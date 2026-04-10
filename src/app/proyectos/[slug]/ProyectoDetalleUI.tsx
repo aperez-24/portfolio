@@ -55,7 +55,7 @@ export default function ProyectoDetalleUI({
               textDecoration: "none",
             }}
           >
-            ← Back
+            ← Volver
           </Link>
           <span
             style={{
@@ -97,6 +97,7 @@ export default function ProyectoDetalleUI({
         />
 
         <div style={{ maxWidth: "900px", margin: "0 auto", position: "relative" }}>
+          {/* Badge */}
           {esFeatured ? (
             <div
               style={{
@@ -139,6 +140,7 @@ export default function ProyectoDetalleUI({
             </p>
           )}
 
+          {/* Título */}
           <h1
             style={{
               fontSize: "clamp(2rem, 5vw, 3.5rem)",
@@ -155,6 +157,7 @@ export default function ProyectoDetalleUI({
             {proyecto.titulo}
           </h1>
 
+          {/* Descripción corta */}
           <p
             style={{
               fontSize: "1.15rem",
@@ -167,6 +170,63 @@ export default function ProyectoDetalleUI({
             {proyecto.descripcionCorta}
           </p>
 
+          {/* Meta: duración + rol */}
+          {(proyecto.duracion || proyecto.rol) && (
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "2.5rem",
+                marginBottom: "2.5rem",
+                padding: "1.25rem 1.5rem",
+                background: "#131318",
+                border: "1px solid rgba(74, 68, 85, 0.2)",
+                borderRadius: "0.75rem",
+                width: "fit-content",
+              }}
+            >
+              {proyecto.duracion && (
+                <div>
+                  <p
+                    style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: "0.55rem",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.15em",
+                      color: "#94a3b8",
+                      marginBottom: "0.25rem",
+                    }}
+                  >
+                    Duración
+                  </p>
+                  <p style={{ fontSize: "0.95rem", fontWeight: 600, color: "#e4e1e9" }}>
+                    {proyecto.duracion}
+                  </p>
+                </div>
+              )}
+              {proyecto.rol && (
+                <div>
+                  <p
+                    style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: "0.55rem",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.15em",
+                      color: "#94a3b8",
+                      marginBottom: "0.25rem",
+                    }}
+                  >
+                    Rol
+                  </p>
+                  <p style={{ fontSize: "0.95rem", fontWeight: 600, color: "#e4e1e9" }}>
+                    {proyecto.rol}
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Tech pills */}
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
             {proyecto.tecnologias.map((tech) => (
               <span
@@ -234,32 +294,111 @@ export default function ProyectoDetalleUI({
         >
           {/* Descripción larga */}
           <div>
-            <p
-              style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.6rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.2em",
-                color: "#7c3aed",
-                marginBottom: "1rem",
-              }}
-            >
-              Sobre el proyecto
-            </p>
-            <p
-              style={{
-                fontSize: "1.05rem",
-                color: "#ccc3d8",
-                lineHeight: 1.8,
-              }}
-            >
+            <SectionLabel>Sobre el proyecto</SectionLabel>
+            <p style={{ fontSize: "1.05rem", color: "#ccc3d8", lineHeight: 1.8 }}>
               {proyecto.descripcionLarga}
             </p>
           </div>
 
-          <div style={{ height: "1px", background: "rgba(74, 68, 85, 0.15)" }} />
+          <Divider />
 
-          {/* Links */}
+          {/* Características */}
+          {proyecto.caracteristicas && proyecto.caracteristicas.length > 0 && (
+            <>
+              <div>
+                <SectionLabel>Funcionalidades clave</SectionLabel>
+                <ul
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "0.75rem",
+                    listStyle: "none",
+                    padding: 0,
+                  }}
+                >
+                  {proyecto.caracteristicas.map((item, i) => (
+                    <li
+                      key={i}
+                      style={{
+                        display: "flex",
+                        alignItems: "flex-start",
+                        gap: "0.75rem",
+                        fontSize: "0.95rem",
+                        color: "#ccc3d8",
+                        lineHeight: 1.6,
+                      }}
+                    >
+                      <span
+                        style={{
+                          flexShrink: 0,
+                          marginTop: "0.5rem",
+                          width: "5px",
+                          height: "5px",
+                          borderRadius: "9999px",
+                          background: "#7c3aed",
+                        }}
+                      />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <Divider />
+            </>
+          )}
+
+          {/* Retos y solución */}
+          {(proyecto.retos || proyecto.solucion) && (
+            <>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+                  gap: "3rem",
+                }}
+              >
+                {proyecto.retos && (
+                  <div>
+                    <SectionLabel>El reto</SectionLabel>
+                    <p style={{ fontSize: "0.95rem", color: "#ccc3d8", lineHeight: 1.8 }}>
+                      {proyecto.retos}
+                    </p>
+                  </div>
+                )}
+                {proyecto.solucion && (
+                  <div>
+                    <SectionLabel>La solución</SectionLabel>
+                    <p style={{ fontSize: "0.95rem", color: "#ccc3d8", lineHeight: 1.8 }}>
+                      {proyecto.solucion}
+                    </p>
+                  </div>
+                )}
+              </div>
+              <Divider />
+            </>
+          )}
+
+          {/* Aprendizajes */}
+          {proyecto.aprendizajes && (
+            <>
+              <div
+                style={{
+                  padding: "2rem",
+                  background: "rgba(124, 58, 237, 0.04)",
+                  border: "1px solid rgba(124, 58, 237, 0.15)",
+                  borderRadius: "0.75rem",
+                }}
+              >
+                <SectionLabel>Qué aprendí</SectionLabel>
+                <p style={{ fontSize: "0.95rem", color: "#ccc3d8", lineHeight: 1.8 }}>
+                  {proyecto.aprendizajes}
+                </p>
+              </div>
+              <Divider />
+            </>
+          )}
+
+          {/* Links de acción */}
           <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
             {proyecto.linkDemo && (
               <a
@@ -320,7 +459,7 @@ export default function ProyectoDetalleUI({
             )}
           </div>
 
-          <div style={{ height: "1px", background: "rgba(74, 68, 85, 0.15)" }} />
+          <Divider />
 
           {/* Otros proyectos */}
           <div>
@@ -384,4 +523,27 @@ export default function ProyectoDetalleUI({
       </section>
     </main>
   );
+}
+
+// ── Componentes auxiliares internos ──
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <p
+      style={{
+        fontFamily: "'JetBrains Mono', monospace",
+        fontSize: "0.6rem",
+        textTransform: "uppercase",
+        letterSpacing: "0.2em",
+        color: "#7c3aed",
+        marginBottom: "1rem",
+      }}
+    >
+      {children}
+    </p>
+  );
+}
+
+function Divider() {
+  return <div style={{ height: "1px", background: "rgba(74, 68, 85, 0.15)" }} />;
 }

@@ -1,7 +1,8 @@
 "use client";
 
+import { motion, Variants } from "framer-motion";
+
 const tecnologias = [
-  // Frontend
   { nombre: "HTML5",      icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
   { nombre: "CSS3",       icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
   { nombre: "JavaScript", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
@@ -10,13 +11,11 @@ const tecnologias = [
   { nombre: "Next.js",    icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
   { nombre: "Tailwind",   icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
   { nombre: "Bootstrap",  icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" },
-  // Backend & DB
   { nombre: "PHP",        icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
   { nombre: "Java",       icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
   { nombre: "MySQL",      icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
   { nombre: "MariaDB",    icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mariadb/mariadb-original.svg" },
   { nombre: "Apache",     icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg" },
-  // Tools & Infra
   { nombre: "Git",        icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
   { nombre: "GitHub",     icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
   { nombre: "Linux",      icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
@@ -29,6 +28,19 @@ const stats = [
   { valor: "1", label: "cliente público" },
   { valor: "2", label: "clientes privados" },
 ];
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (delay: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { 
+      duration: 0.6, 
+      ease: [0.16, 1, 0.3, 1], // Ahora TS sabe que esto es un Bezier curve (Easing)
+      delay 
+    },
+  }),
+};
 
 export default function SobreMi() {
   return (
@@ -47,7 +59,13 @@ export default function SobreMi() {
         }}
       >
         {/* ── Columna izquierda: texto ── */}
-        <div>
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          custom={0}
+        >
           <p
             style={{
               fontFamily: "'JetBrains Mono', monospace",
@@ -113,6 +131,17 @@ export default function SobreMi() {
               borderRadius: "0.75rem",
               textDecoration: "none",
               fontSize: "0.9rem",
+              transition: "border-color 0.2s, background 0.2s",
+            }}
+            onMouseEnter={(e) => {
+              const el = e.currentTarget as HTMLAnchorElement;
+              el.style.borderColor = "rgba(124,58,237,0.4)";
+              el.style.background = "#2a292f";
+            }}
+            onMouseLeave={(e) => {
+              const el = e.currentTarget as HTMLAnchorElement;
+              el.style.borderColor = "rgba(74, 68, 85, 0.4)";
+              el.style.background = "#1f1f25";
             }}
           >
             <span style={{ color: "#7c3aed" }}>↓</span>
@@ -129,10 +158,16 @@ export default function SobreMi() {
               PDF
             </span>
           </a>
-        </div>
+        </motion.div>
 
         {/* ── Columna derecha: tecnologías + stats ── */}
-        <div>
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          custom={0.15}
+        >
           <p
             style={{
               fontFamily: "'JetBrains Mono', monospace",
@@ -146,7 +181,7 @@ export default function SobreMi() {
             tecnologías
           </p>
 
-          {/* Grid de iconos — 6 columnas para que quepan los 18 */}
+          {/* Grid de iconos */}
           <div
             style={{
               display: "grid",
@@ -154,9 +189,17 @@ export default function SobreMi() {
               gap: "0.6rem",
             }}
           >
-            {tecnologias.map((tech) => (
-              <div
+            {tecnologias.map((tech, i) => (
+              <motion.div
                 key={tech.nombre}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.3,
+                  delay: i * 0.03,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
                 title={tech.nombre}
                 style={{
                   display: "flex",
@@ -186,7 +229,10 @@ export default function SobreMi() {
                   height={24}
                   style={{
                     opacity: 0.8,
-                    filter: tech.nombre === "GitHub" || tech.nombre === "WordPress" ? "invert(1) brightness(1)" : "none",
+                    filter:
+                      tech.nombre === "GitHub" || tech.nombre === "WordPress"
+                        ? "invert(1) brightness(1)"
+                        : "none",
                   }}
                 />
                 <span
@@ -200,7 +246,7 @@ export default function SobreMi() {
                 >
                   {tech.nombre}
                 </span>
-              </div>
+              </motion.div>
             ))}
           </div>
 
@@ -213,9 +259,13 @@ export default function SobreMi() {
               marginTop: "1.5rem",
             }}
           >
-            {stats.map((stat) => (
-              <div
+            {stats.map((stat, i) => (
+              <motion.div
                 key={stat.label}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 style={{
                   padding: "1rem",
                   background: "#131318",
@@ -248,10 +298,10 @@ export default function SobreMi() {
                 >
                   {stat.label}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

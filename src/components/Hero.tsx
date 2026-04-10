@@ -1,5 +1,20 @@
 "use client";
 
+import { motion, Variants } from "framer-motion";
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (delay: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { 
+      duration: 0.8, 
+      ease: [0.16, 1, 0.3, 1],
+      delay 
+    },
+  }),
+};
+
 export default function Hero() {
   return (
     <section
@@ -54,16 +69,20 @@ export default function Hero() {
           transform: "translateX(-50%)",
           width: "60%",
           height: "1px",
-          background:
-            "linear-gradient(90deg, transparent, rgba(124,58,237,0.25), transparent)",
+          background: "linear-gradient(90deg, transparent, rgba(124,58,237,0.25), transparent)",
           zIndex: 1,
         }}
       />
 
       {/* Content */}
       <div style={{ position: "relative", zIndex: 1 }}>
+
         {/* Available badge */}
-        <div
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0}
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -98,11 +117,15 @@ export default function Hero() {
           >
             Available for work
           </span>
-        </div>
+        </motion.div>
 
         {/* Main heading */}
-        <h1
+        <motion.h1
           className="text-gradient"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0.1}
           style={{
             fontSize: "clamp(3.5rem, 10vw, 7rem)",
             fontWeight: 900,
@@ -112,10 +135,14 @@ export default function Hero() {
           }}
         >
           Adrián Pérez
-        </h1>
+        </motion.h1>
 
         {/* Role */}
-        <div
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0.2}
           style={{
             display: "flex",
             alignItems: "center",
@@ -137,10 +164,14 @@ export default function Hero() {
             Full Stack Web Developer
           </p>
           <span style={{ height: "1px", width: "2.5rem", background: "var(--border)" }} />
-        </div>
+        </motion.div>
 
         {/* Description */}
-        <p
+        <motion.p
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0.3}
           style={{
             maxWidth: "520px",
             margin: "0 auto 3rem",
@@ -155,10 +186,14 @@ export default function Hero() {
             Ayuntamiento de Rivas-Vaciamadrid
           </span>
           . Construyo aplicaciones limpias, funcionales y mantenibles.
-        </p>
+        </motion.p>
 
         {/* CTA Buttons */}
-        <div
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0.4}
           style={{
             display: "flex",
             flexWrap: "wrap",
@@ -167,7 +202,6 @@ export default function Hero() {
             alignItems: "center",
           }}
         >
-          {/* Primary button */}
           <a
             href="#projects"
             style={{
@@ -204,7 +238,6 @@ export default function Hero() {
             Ver mis proyectos →
           </a>
 
-          {/* Secondary button */}
           <a
             href="/cv-adrian-perez.pdf"
             download
@@ -243,11 +276,14 @@ export default function Hero() {
             <span style={{ color: "var(--accent)" }}>↓</span>
             Descargar CV
           </a>
-        </div>
+        </motion.div>
       </div>
 
       {/* Scroll indicator */}
-      <div
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.8 }}
         style={{
           position: "absolute",
           bottom: "2.5rem",
@@ -278,7 +314,7 @@ export default function Hero() {
             background: "linear-gradient(to bottom, var(--border), transparent)",
           }}
         />
-      </div>
+      </motion.div>
     </section>
   );
 }

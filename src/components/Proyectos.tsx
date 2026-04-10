@@ -1,7 +1,21 @@
 "use client";
 
 import Link from "next/link";
+import { motion, Variants } from "framer-motion";
 import { proyectos } from "@/data/proyectos";
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (delay: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { 
+      duration: 0.6, 
+      ease: [0.16, 1, 0.3, 1],
+      delay 
+    },
+  }),
+};
 
 export default function Proyectos() {
   return (
@@ -33,7 +47,14 @@ export default function Proyectos() {
       <div style={{ maxWidth: "1200px", margin: "0 auto", position: "relative" }}>
 
         {/* ── Section header ── */}
-        <div style={{ marginBottom: "4rem" }}>
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          custom={0}
+          style={{ marginBottom: "4rem" }}
+        >
           <p
             style={{
               fontFamily: "'JetBrains Mono', monospace",
@@ -56,7 +77,7 @@ export default function Proyectos() {
               marginBottom: "1.5rem",
             }}
           >
-            Trabajos {" "}
+            Trabajos{" "}
             <span className="text-gradient">Seleccionados</span>.
           </h2>
           <p
@@ -69,7 +90,7 @@ export default function Proyectos() {
           >
             Proyectos reales entregados — no ejercicios de clase.
           </p>
-        </div>
+        </motion.div>
 
         {/* ── Cards grid ── */}
         <div
@@ -79,11 +100,16 @@ export default function Proyectos() {
             gap: "1.25rem",
           }}
         >
-          {proyectos.map((proyecto) => {
+          {proyectos.map((proyecto, i) => {
             const isFeatured = proyecto.badgeTipo === "featured";
             return (
-              <div
+              <motion.div
                 key={proyecto.slug}
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-60px" }}
+                custom={i * 0.1}
                 style={{
                   background: "var(--bg-secondary)",
                   border: isFeatured
@@ -146,7 +172,6 @@ export default function Proyectos() {
                       img.style.transform = "scale(1)";
                     }}
                   />
-                  {/* Gradient fade into card */}
                   <div
                     style={{
                       position: "absolute",
@@ -168,7 +193,6 @@ export default function Proyectos() {
                   }}
                 >
                   <div>
-                    {/* Badge */}
                     {isFeatured ? (
                       <div
                         style={{
@@ -235,7 +259,6 @@ export default function Proyectos() {
                     </p>
                   </div>
 
-                  {/* Bottom: pills + link */}
                   <div style={{ marginTop: "auto" }}>
                     <div
                       style={{
@@ -319,7 +342,7 @@ export default function Proyectos() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
