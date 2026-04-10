@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image"; // Importante para optimización
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -59,37 +60,39 @@ export default function Navbar() {
           boxSizing: "border-box",
         }}
       >
-        {/* ── Logo ── */}
+        {/* ── Logo con cambio Dinámico ── */}
         <Link
           href="/"
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "0.5rem",
             textDecoration: "none",
             flexShrink: 0,
           }}
         >
-          <span
-            style={{
-              width: "7px",
-              height: "7px",
-              borderRadius: "9999px",
-              background: "var(--accent)",
-              boxShadow: "0 0 8px rgba(124,58,237,0.65)",
-              display: "block",
-            }}
-          />
-          <span
-            style={{
-              fontSize: "0.95rem",
-              fontWeight: 700,
-              letterSpacing: "-0.01em",
-              color: "var(--text-primary)",
-            }}
-          >
-            aperez<span style={{ color: "var(--accent)" }}>-24</span>
-          </span>
+          {/* Logo corto para Móvil (Oculto en md+) */}
+          <div className="block md:hidden">
+            <Image
+              src="/images/logos/logo.png"
+              alt="Logo"
+              width={40}
+              height={40}
+              priority
+              className="object-contain"
+            />
+          </div>
+
+          {/* Logo lateral para Desktop (Oculto en móvil) */}
+          <div className="hidden md:block">
+            <Image
+              src="/images/logos/logo.png"
+              alt="Adrián Pérez Navarro Logo"
+              width={50} // Ajusta según el aspecto de tu logo lateral
+              height={50}
+              priority
+              className="object-contain"
+            />
+          </div>
         </Link>
 
         {/* ── Desktop links ── */}
@@ -158,21 +161,21 @@ export default function Navbar() {
         </div>
 
         {/* ── Mobile hamburger ── */}
-<button
-  className="flex md:hidden" // 'flex' por defecto, se oculta en 'md' en adelante
-  onClick={() => setMenuOpen(!menuOpen)}
-  aria-label="Toggle menu"
-  style={{
-    background: "none",
-    border: "none",
-    cursor: "pointer",
-    padding: "0.5rem",
-    flexDirection: "column", // Mantenemos la dirección aquí
-    gap: "5px",
-    alignItems: "center",
-    justifyContent: "center",
-  }}
->
+        <button
+          className="flex md:hidden"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            padding: "0.5rem",
+            flexDirection: "column",
+            gap: "5px",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <span
             style={{
               display: "block",

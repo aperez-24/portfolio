@@ -2,12 +2,12 @@ const tecnologias = [
   { nombre: "HTML5", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
   { nombre: "CSS3", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
   { nombre: "JavaScript", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+  { nombre: "TypeScript", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+  { nombre: "Java", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" }, // <-- Nueva incorporación
   { nombre: "PHP", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
   { nombre: "MySQL", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-  { nombre: "Apache", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg" },
   { nombre: "Next.js", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
   { nombre: "Tailwind", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
-  { nombre: "TypeScript", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
   { nombre: "Git", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
   { nombre: "GitHub", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
   { nombre: "VS Code", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
@@ -47,7 +47,7 @@ export default function SobreMi() {
               marginBottom: "1rem",
             }}
           >
-            sobre mí
+            01 // Sobre Mí
           </p>
 
           <h2

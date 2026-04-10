@@ -15,6 +15,19 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Adrián Pérez Navarro | Full Stack Web Developer",
   description: "Desarrollador web full stack con proyectos reales, incluyendo una plataforma para el Ayuntamiento de Rivas-Vaciamadrid.",
+  // Configuración completa de favicons y PWA
+  icons: {
+    icon: [
+      { url: "/favicons/favicon.ico", sizes: "any" },
+      { url: "/favicons/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicons/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+    ],
+    apple: [
+      { url: "/favicons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
+  // Referencia al manifiesto para soporte de Web App (PWA)
+  manifest: "/favicons/site.webmanifest",
 };
 
 export default function RootLayout({
