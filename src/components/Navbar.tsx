@@ -6,77 +6,274 @@ import Link from "next/link";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+      const sections = ["about", "projects"];
+      const current = sections.find((id) => {
+        const el = document.getElementById(id);
+        if (!el) return false;
+        const rect = el.getBoundingClientRect();
+        return rect.top <= 120 && rect.bottom >= 120;
+      });
+      if (current) setActiveSection(current);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = ["about", "projects", "contact"];
+  const navLinks = [
+    { id: "about", label: "Sobre Mí" },
+    { id: "projects", label: "Proyectos" },
+  ];
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#131318]/90 backdrop-blur-xl border-b border-[#4a4455]/30 shadow-[0_0_30px_rgba(124,58,237,0.05)]"
-          : "bg-transparent"
-      }`}
+      style={{
+        position: "fixed",
+        top: 0,
+        width: "100%",
+        zIndex: 50,
+        transition: "background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease",
+        background: scrolled ? "rgba(14,14,19,0.88)" : "transparent",
+        backdropFilter: scrolled ? "blur(20px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
+        borderBottom: scrolled
+          ? "1px solid var(--border)"
+          : "1px solid transparent",
+        boxShadow: scrolled ? "0 4px 40px rgba(124,58,237,0.05)" : "none",
+      }}
     >
-      <div className="flex justify-between items-center h-20 px-8 max-w-7xl mx-auto">
-
-        {/* Logo */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          height: "72px",
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "0 2rem",
+          width: "100%",
+          boxSizing: "border-box",
+        }}
+      >
+        {/* ── Logo ── */}
         <Link
           href="/"
-          className="text-xl font-bold tracking-tighter text-[#e4e1e9] hover:text-[#a78bfa] transition-colors"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            textDecoration: "none",
+            flexShrink: 0,
+          }}
         >
-          Adrián Pérez
+          <span
+            style={{
+              width: "7px",
+              height: "7px",
+              borderRadius: "9999px",
+              background: "var(--accent)",
+              boxShadow: "0 0 8px rgba(124,58,237,0.65)",
+              display: "block",
+            }}
+          />
+          <span
+            style={{
+              fontSize: "0.95rem",
+              fontWeight: 700,
+              letterSpacing: "-0.01em",
+              color: "var(--text-primary)",
+            }}
+          >
+            aperez<span style={{ color: "var(--accent)" }}>-24</span>
+          </span>
         </Link>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((section) => (
+        {/* ── Desktop links ── */}
+        <div
+          className="hidden md:flex"
+          style={{ alignItems: "center", gap: "0.25rem" }}
+        >
+          {navLinks.map(({ id, label }) => (
             <a
-              key={section}
-              href={`#${section}`}
-              className="text-[#ccc3d8] font-['JetBrains_Mono'] text-sm uppercase tracking-widest hover:text-violet-400 transition-all duration-300"
+              key={id}
+              href={`#${id}`}
+              style={{
+                padding: "0.5rem 1rem",
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "0.68rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.16em",
+                color: activeSection === id ? "var(--accent-hover)" : "var(--text-muted)",
+                textDecoration: "none",
+                borderRadius: "0.5rem",
+                background: activeSection === id ? "rgba(124,58,237,0.07)" : "transparent",
+                transition: "color 0.2s, background 0.2s",
+              }}
+              onMouseEnter={(e) => {
+                if (activeSection !== id)
+                  (e.currentTarget as HTMLAnchorElement).style.color = "var(--text-secondary)";
+              }}
+              onMouseLeave={(e) => {
+                if (activeSection !== id)
+                  (e.currentTarget as HTMLAnchorElement).style.color = "var(--text-muted)";
+              }}
             >
-              {section}
+              {label}
+            </a>
+          ))}
+
+          <a
+            href="#contact"
+            style={{
+              marginLeft: "1.25rem",
+              padding: "0.65rem 1.5rem",
+              background: "var(--accent)",
+              color: "#fff",
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.68rem",
+              fontWeight: 700,
+              textTransform: "uppercase",
+              letterSpacing: "0.12em",
+              borderRadius: "0.5rem",
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+              transition: "background 0.2s, box-shadow 0.2s",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.background = "var(--accent-hover)";
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow =
+                "0 0 24px rgba(124,58,237,0.35)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.background = "var(--accent)";
+              (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
+            }}
+          >
+            Contactame
+          </a>
+        </div>
+
+        {/* ── Mobile hamburger ── */}
+<button
+  className="flex md:hidden" // 'flex' por defecto, se oculta en 'md' en adelante
+  onClick={() => setMenuOpen(!menuOpen)}
+  aria-label="Toggle menu"
+  style={{
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    padding: "0.5rem",
+    flexDirection: "column", // Mantenemos la dirección aquí
+    gap: "5px",
+    alignItems: "center",
+    justifyContent: "center",
+  }}
+>
+          <span
+            style={{
+              display: "block",
+              width: "20px",
+              height: "1.5px",
+              background: "var(--text-primary)",
+              transition: "transform 0.3s",
+              transform: menuOpen ? "rotate(45deg) translate(4.5px, 4.5px)" : "none",
+            }}
+          />
+          <span
+            style={{
+              display: "block",
+              width: "20px",
+              height: "1.5px",
+              background: "var(--text-primary)",
+              transition: "opacity 0.3s",
+              opacity: menuOpen ? 0 : 1,
+            }}
+          />
+          <span
+            style={{
+              display: "block",
+              width: "20px",
+              height: "1.5px",
+              background: "var(--text-primary)",
+              transition: "transform 0.3s",
+              transform: menuOpen ? "rotate(-45deg) translate(4.5px, -4.5px)" : "none",
+            }}
+          />
+        </button>
+      </div>
+
+      {/* ── Mobile menu ── */}
+      <div
+        className="block md:hidden"
+        style={{
+          overflow: "hidden",
+          maxHeight: menuOpen ? "320px" : "0",
+          transition: "max-height 0.3s ease",
+        }}
+      >
+        <div
+          style={{
+            background: "rgba(14,14,19,0.97)",
+            backdropFilter: "blur(20px)",
+            borderTop: "1px solid var(--border)",
+            padding: "1.5rem 2rem",
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.25rem",
+          }}
+        >
+          {navLinks.map(({ id, label }) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                padding: "0.85rem 0",
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: "0.68rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.16em",
+                color: "var(--text-muted)",
+                textDecoration: "none",
+                borderBottom: "1px solid rgba(74,68,85,0.1)",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={(e) =>
+                ((e.currentTarget as HTMLAnchorElement).style.color = "var(--accent-hover)")
+              }
+              onMouseLeave={(e) =>
+                ((e.currentTarget as HTMLAnchorElement).style.color = "var(--text-muted)")
+              }
+            >
+              {label}
             </a>
           ))}
           <a
             href="#contact"
-            className="bg-[#7c3aed] text-white px-4 py-1.5 rounded-lg font-bold text-sm hover:bg-[#a78bfa] transition-colors"
+            onClick={() => setMenuOpen(false)}
+            style={{
+              marginTop: "1rem",
+              padding: "0.85rem",
+              textAlign: "center",
+              background: "var(--accent)",
+              color: "#fff",
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.68rem",
+              fontWeight: 700,
+              textTransform: "uppercase",
+              letterSpacing: "0.12em",
+              borderRadius: "0.5rem",
+              textDecoration: "none",
+            }}
           >
-            Contact me
+            Contactame
           </a>
         </div>
-
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden text-[#e4e1e9]"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span>{menuOpen ? "✕" : "☰"}</span>
-        </button>
       </div>
-
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div className="md:hidden bg-[#131318]/95 backdrop-blur-xl border-t border-[#4a4455]/20 px-8 py-6 flex flex-col gap-6">
-          {navLinks.map((section) => (
-            <a
-              key={section}
-              href={`#${section}`}
-              onClick={() => setMenuOpen(false)}
-              className="text-[#ccc3d8] font-['JetBrains_Mono'] text-sm uppercase tracking-widest hover:text-violet-400 transition-colors"
-            >
-              {section}
-            </a>
-          ))}
-        </div>
-      )}
     </nav>
   );
 }

@@ -1,53 +1,284 @@
+"use client";
+
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-8 text-center overflow-hidden">
+    <section
+      style={{
+        position: "relative",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "0 2rem",
+        textAlign: "center",
+        overflow: "hidden",
+        background: "var(--bg-primary)",
+        boxSizing: "border-box",
+      }}
+    >
+      {/* Grid background */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 0,
+          opacity: 0.03,
+          backgroundImage:
+            "linear-gradient(var(--accent-hover) 1px, transparent 1px), linear-gradient(90deg, var(--accent-hover) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+      />
 
-      {/* Background radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-[#7c3aed]/10 rounded-full blur-[120px] -z-10" />
+      {/* Radial glow */}
+      <div
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "900px",
+          height: "500px",
+          background: "radial-gradient(ellipse, rgba(124,58,237,0.08) 0%, transparent 70%)",
+          zIndex: 0,
+          pointerEvents: "none",
+        }}
+      />
 
-      {/* Available for work badge */}
-      <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#1f1f25] border border-[#4a4455]/30 rounded-full mb-8">
-        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-        <span className="font-['JetBrains_Mono'] text-[10px] uppercase tracking-[0.2em] text-[#ccc3d8]">
-          Available for work
+      {/* Bottom separator line */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "60%",
+          height: "1px",
+          background:
+            "linear-gradient(90deg, transparent, rgba(124,58,237,0.25), transparent)",
+          zIndex: 1,
+        }}
+      />
+
+      {/* Content */}
+      <div style={{ position: "relative", zIndex: 1 }}>
+        {/* Available badge */}
+        <div
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.6rem",
+            padding: "0.4rem 1rem",
+            background: "var(--bg-secondary)",
+            border: "1px solid var(--border)",
+            borderRadius: "9999px",
+            marginBottom: "2.5rem",
+          }}
+        >
+          <span
+            style={{
+              width: "6px",
+              height: "6px",
+              borderRadius: "9999px",
+              background: "#34d399",
+              boxShadow: "0 0 6px rgba(52,211,153,0.7)",
+              animation: "pulse 2s infinite",
+              display: "block",
+              flexShrink: 0,
+            }}
+          />
+          <span
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.58rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.22em",
+              color: "var(--text-muted)",
+            }}
+          >
+            Available for work
+          </span>
+        </div>
+
+        {/* Main heading */}
+        <h1
+          className="text-gradient"
+          style={{
+            fontSize: "clamp(3.5rem, 10vw, 7rem)",
+            fontWeight: 900,
+            letterSpacing: "-0.04em",
+            lineHeight: 0.95,
+            marginBottom: "1.5rem",
+          }}
+        >
+          Adrián Pérez
+        </h1>
+
+        {/* Role */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "1rem",
+            marginBottom: "2rem",
+          }}
+        >
+          <span style={{ height: "1px", width: "2.5rem", background: "var(--border)" }} />
+          <p
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.68rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.25em",
+              color: "var(--text-muted)",
+            }}
+          >
+            Full Stack Web Developer
+          </p>
+          <span style={{ height: "1px", width: "2.5rem", background: "var(--border)" }} />
+        </div>
+
+        {/* Description */}
+        <p
+          style={{
+            maxWidth: "520px",
+            margin: "0 auto 3rem",
+            color: "var(--text-muted)",
+            lineHeight: 1.75,
+            fontSize: "1rem",
+          }}
+        >
+          Desarrollador junior con 3 proyectos reales entregados, incluyendo una
+          plataforma para el{" "}
+          <span style={{ color: "var(--text-secondary)", fontWeight: 500 }}>
+            Ayuntamiento de Rivas-Vaciamadrid
+          </span>
+          . Construyo aplicaciones limpias, funcionales y mantenibles.
+        </p>
+
+        {/* CTA Buttons */}
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "1rem",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {/* Primary button */}
+          <a
+            href="#projects"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.6rem",
+              padding: "0.9rem 2rem",
+              background: "var(--accent)",
+              color: "#fff",
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.72rem",
+              fontWeight: 700,
+              textTransform: "uppercase",
+              letterSpacing: "0.12em",
+              borderRadius: "0.6rem",
+              textDecoration: "none",
+              border: "1px solid var(--accent)",
+              boxShadow: "0 0 30px rgba(124,58,237,0.2)",
+              transition: "background 0.2s, box-shadow 0.2s, transform 0.2s",
+            }}
+            onMouseEnter={(e) => {
+              const el = e.currentTarget as HTMLAnchorElement;
+              el.style.background = "var(--accent-hover)";
+              el.style.boxShadow = "0 0 50px rgba(124,58,237,0.45)";
+              el.style.transform = "translateY(-1px)";
+            }}
+            onMouseLeave={(e) => {
+              const el = e.currentTarget as HTMLAnchorElement;
+              el.style.background = "var(--accent)";
+              el.style.boxShadow = "0 0 30px rgba(124,58,237,0.2)";
+              el.style.transform = "translateY(0)";
+            }}
+          >
+            Ver mis proyectos →
+          </a>
+
+          {/* Secondary button */}
+          <a
+            href="/cv-adrian-perez.pdf"
+            download
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.6rem",
+              padding: "0.9rem 2rem",
+              background: "transparent",
+              color: "var(--text-secondary)",
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.72rem",
+              fontWeight: 700,
+              textTransform: "uppercase",
+              letterSpacing: "0.12em",
+              borderRadius: "0.6rem",
+              textDecoration: "none",
+              border: "1px solid var(--border)",
+              transition: "border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s",
+            }}
+            onMouseEnter={(e) => {
+              const el = e.currentTarget as HTMLAnchorElement;
+              el.style.borderColor = "rgba(124,58,237,0.45)";
+              el.style.color = "var(--text-primary)";
+              el.style.background = "rgba(124,58,237,0.05)";
+              el.style.transform = "translateY(-1px)";
+            }}
+            onMouseLeave={(e) => {
+              const el = e.currentTarget as HTMLAnchorElement;
+              el.style.borderColor = "var(--border)";
+              el.style.color = "var(--text-secondary)";
+              el.style.background = "transparent";
+              el.style.transform = "translateY(0)";
+            }}
+          >
+            <span style={{ color: "var(--accent)" }}>↓</span>
+            Descargar CV
+          </a>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "2.5rem",
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "0.5rem",
+          zIndex: 1,
+        }}
+      >
+        <span
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: "0.52rem",
+            textTransform: "uppercase",
+            letterSpacing: "0.2em",
+            color: "var(--border)",
+          }}
+        >
+          scroll
         </span>
+        <div
+          style={{
+            width: "1px",
+            height: "2.5rem",
+            background: "linear-gradient(to bottom, var(--border), transparent)",
+          }}
+        />
       </div>
-
-      {/* Main heading */}
-      <h1 className="text-6xl md:text-8xl font-extrabold tracking-tighter mb-4 text-gradient">
-        Adrián Pérez
-      </h1>
-
-      {/* Subtitle */}
-      <p className="text-xl md:text-2xl font-medium text-[#ccc3d8] tracking-tight mb-8">
-        Full Stack Web Developer
-      </p>
-
-      {/* Description */}
-      <p className="max-w-2xl text-[#94a3b8] leading-relaxed mb-12 text-lg">
-        Desarrollador junior con 3 proyectos reales entregados, incluyendo una
-        plataforma para el Ayuntamiento de Rivas-Vaciamadrid. Construyo
-        aplicaciones web limpias, funcionales y mantenibles.
-      </p>
-
-      {/* CTA Buttons */}
-      <div className="flex flex-col sm:flex-row gap-4 items-center">
-        <a
-          href="#projects"
-          className="w-full sm:w-auto px-8 py-4 bg-[#7c3aed] text-white font-bold rounded-xl shadow-[0_0_30px_rgba(124,58,237,0.2)] hover:shadow-[0_0_40px_rgba(124,58,237,0.4)] hover:bg-[#a78bfa] transition-all"
-        >
-          Ver mis proyectos
-        </a>
-        <a
-          href="/cv-adrian-perez.pdf"
-          download
-          className="w-full sm:w-auto px-8 py-4 bg-[#1f1f25] border border-[#4a4455]/40 text-[#e4e1e9] font-bold rounded-xl hover:bg-[#2a292f] transition-colors flex items-center justify-center gap-2"
-        >
-          <span>↓</span>
-          Descargar CV
-        </a>
-      </div>
-
     </section>
   );
 }

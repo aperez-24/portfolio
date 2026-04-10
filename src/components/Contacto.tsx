@@ -41,27 +41,28 @@ export default function Contacto() {
     }
   }
 
-  const inputStyle: React.CSSProperties = {
+  const inputBase: React.CSSProperties = {
     width: "100%",
-    background: "#0e0e13",
+    background: "transparent",
     border: "none",
-    borderBottom: "2px solid rgba(74, 68, 85, 0.3)",
-    padding: "0.75rem 0.25rem",
-    color: "#e4e1e9",
-    fontSize: "0.95rem",
+    borderBottom: "1px solid var(--border)",
+    padding: "0.65rem 0",
+    color: "var(--text-primary)",
+    fontSize: "0.9rem",
     outline: "none",
     boxSizing: "border-box",
     transition: "border-color 0.2s",
+    fontFamily: "inherit",
   };
 
-  const labelStyle: React.CSSProperties = {
+  const labelBase: React.CSSProperties = {
     fontFamily: "'JetBrains Mono', monospace",
-    fontSize: "0.6rem",
-    textTransform: "uppercase",
-    letterSpacing: "0.15em",
-    color: "#94a3b8",
+    fontSize: "0.58rem",
+    textTransform: "uppercase" as const,
+    letterSpacing: "0.18em",
+    color: "var(--text-muted)",
     display: "block",
-    marginBottom: "0.5rem",
+    marginBottom: "0.4rem",
   };
 
   return (
@@ -71,8 +72,27 @@ export default function Contacto() {
         padding: "8rem 2rem",
         width: "100%",
         boxSizing: "border-box",
+        borderTop: "1px solid var(--border)",
+        background: "var(--bg-primary)",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
+      {/* Ambient glow */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "-5%",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "700px",
+          height: "300px",
+          background:
+            "radial-gradient(ellipse, rgba(124,58,237,0.06) 0%, transparent 70%)",
+          pointerEvents: "none",
+        }}
+      />
+
       <div
         style={{
           maxWidth: "1200px",
@@ -81,222 +101,235 @@ export default function Contacto() {
           gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
           gap: "5rem",
           alignItems: "start",
+          position: "relative",
         }}
       >
-        {/* ── Columna izquierda: info ── */}
+        {/* ── Left column ── */}
         <div>
           <p
             style={{
               fontFamily: "'JetBrains Mono', monospace",
-              fontSize: "0.65rem",
+              fontSize: "0.6rem",
               textTransform: "uppercase",
               letterSpacing: "0.3em",
-              color: "#7c3aed",
+              color: "var(--accent)",
               marginBottom: "0.75rem",
             }}
           >
-            03 // Connect
+            03 // Contacto
           </p>
           <h2
             style={{
               fontSize: "clamp(2rem, 4vw, 3rem)",
               fontWeight: 800,
               letterSpacing: "-0.03em",
+              lineHeight: 1.15,
               color: "#e4e1e9",
               marginBottom: "1.5rem",
             }}
           >
-            Get in Touch
+            Ponte en {" "}
+            <span className="text-gradient">contacto</span>.
           </h2>
           <p
             style={{
-              color: "#94a3b8",
-              fontSize: "1.05rem",
-              lineHeight: 1.7,
-              maxWidth: "28rem",
+              color: "var(--text-muted)",
+              fontSize: "0.95rem",
+              lineHeight: 1.75,
+              maxWidth: "26rem",
               marginBottom: "3rem",
             }}
           >
-            ¿Tienes una pregunta sobre mi trabajo o quieres hablar de un
-            proyecto? Escríbeme. Suelo responder en menos de 24 horas.
+            ¿Tienes un proyecto o quieres hablar sobre una oportunidad? Escríbeme.
+            Suelo responder en menos de 24 horas.
           </p>
 
-          {/* Info items */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-              <div
-                style={{
-                  width: "3rem",
-                  height: "3rem",
-                  background: "#1f1f25",
-                  borderRadius: "0.75rem",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "1.2rem",
-                  flexShrink: 0,
-                }}
-              >
-                ✉
-              </div>
-              <div>
-                <p
-                  style={{
-                    fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: "0.6rem",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                    color: "#94a3b8",
-                    marginBottom: "0.2rem",
-                  }}
-                >
-                  Email
-                </p>
-                <p style={{ fontWeight: 700, color: "#e4e1e9", fontSize: "0.95rem" }}>
-                  adrianpereznavarro@gmail.com
-                </p>
-              </div>
-            </div>
-
-            <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-              <div
-                style={{
-                  width: "3rem",
-                  height: "3rem",
-                  background: "#1f1f25",
-                  borderRadius: "0.75rem",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "1.2rem",
-                  flexShrink: 0,
-                }}
-              >
-                📍
-              </div>
-              <div>
-                <p
-                  style={{
-                    fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: "0.6rem",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                    color: "#94a3b8",
-                    marginBottom: "0.2rem",
-                  }}
-                >
-                  Ubicación
-                </p>
-                <p style={{ fontWeight: 700, color: "#e4e1e9", fontSize: "0.95rem" }}>
-                  Madrid, España
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Social links */}
-          <div
-            style={{
-              display: "flex",
-              gap: "2rem",
-              marginTop: "3rem",
-            }}
-          >
+          {/* Contact items */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
             {[
-              { label: "GitHub", href: "https://github.com/aperez-24" },
-              { label: "LinkedIn", href: "https://www.linkedin.com/in/adrián-pérez-navarro/" },
-            ].map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.65rem",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                  color: "rgba(228, 225, 233, 0.5)",
-                  textDecoration: "none",
-                  transition: "color 0.2s",
-                }}
-                onMouseEnter={(e) =>
-                  ((e.currentTarget as HTMLAnchorElement).style.color = "#7c3aed")
-                }
-                onMouseLeave={(e) =>
-                  ((e.currentTarget as HTMLAnchorElement).style.color =
-                    "rgba(228, 225, 233, 0.5)")
-                }
+              {
+                icon: "✉",
+                label: "Email",
+                value: "adrianpereznavarro@gmail.com",
+                href: "mailto:adrianpereznavarro@gmail.com",
+              },
+              {
+                icon: "📍",
+                label: "Ubicación",
+                value: "Madrid, España",
+                href: null,
+              },
+            ].map(({ icon, label, value, href }) => (
+              <div
+                key={label}
+                style={{ display: "flex", alignItems: "center", gap: "1rem" }}
               >
-                {link.label}
-              </a>
+                <div
+                  style={{
+                    width: "2.75rem",
+                    height: "2.75rem",
+                    background: "var(--bg-secondary)",
+                    border: "1px solid var(--border)",
+                    borderRadius: "0.75rem",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "1rem",
+                    flexShrink: 0,
+                  }}
+                >
+                  {icon}
+                </div>
+                <div>
+                  <p
+                    style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: "0.55rem",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.15em",
+                      color: "var(--text-muted)",
+                      marginBottom: "0.2rem",
+                    }}
+                  >
+                    {label}
+                  </p>
+                  {href ? (
+                    <a
+                      href={href}
+                      style={{
+                        fontWeight: 600,
+                        color: "var(--text-secondary)",
+                        fontSize: "0.875rem",
+                        textDecoration: "none",
+                        transition: "color 0.2s",
+                      }}
+                      onMouseEnter={(e) =>
+                        ((e.currentTarget as HTMLAnchorElement).style.color =
+                          "var(--accent-hover)")
+                      }
+                      onMouseLeave={(e) =>
+                        ((e.currentTarget as HTMLAnchorElement).style.color =
+                          "var(--text-secondary)")
+                      }
+                    >
+                      {value}
+                    </a>
+                  ) : (
+                    <p
+                      style={{
+                        fontWeight: 600,
+                        color: "var(--text-secondary)",
+                        fontSize: "0.875rem",
+                      }}
+                    >
+                      {value}
+                    </p>
+                  )}
+                </div>
+              </div>
             ))}
           </div>
         </div>
 
-        {/* ── Columna derecha: formulario ── */}
+        {/* ── Right column: form ── */}
         <div
           style={{
-            background: "#1f1f25",
+            background: "var(--bg-secondary)",
             padding: "2.5rem",
-            borderRadius: "0.75rem",
-            border: "1px solid rgba(74, 68, 85, 0.15)",
-            boxShadow: "0 25px 50px rgba(0,0,0,0.3)",
+            borderRadius: "1rem",
+            border: "1px solid var(--border)",
           }}
         >
+          <p
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.55rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.2em",
+              color: "var(--text-muted)",
+              marginBottom: "2rem",
+            }}
+          >
+            — nueva conversación
+          </p>
+
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
-              gap: "1.5rem",
-              marginBottom: "1.5rem",
+              gap: "2rem",
+              marginBottom: "2rem",
             }}
           >
             <div>
-              <label style={labelStyle}>Nombre</label>
+              <label style={labelBase}>Nombre</label>
               <input
                 name="nombre"
                 type="text"
                 placeholder="Tu nombre"
                 value={form.nombre}
                 onChange={handleChange}
-                style={inputStyle}
+                style={inputBase}
+                onFocus={(e) =>
+                  ((e.target as HTMLInputElement).style.borderBottomColor = "var(--accent)")
+                }
+                onBlur={(e) =>
+                  ((e.target as HTMLInputElement).style.borderBottomColor = "var(--border)")
+                }
               />
             </div>
             <div>
-              <label style={labelStyle}>Email</label>
+              <label style={labelBase}>Email</label>
               <input
                 name="email"
                 type="email"
                 placeholder="tu@email.com"
                 value={form.email}
                 onChange={handleChange}
-                style={inputStyle}
+                style={inputBase}
+                onFocus={(e) =>
+                  ((e.target as HTMLInputElement).style.borderBottomColor = "var(--accent)")
+                }
+                onBlur={(e) =>
+                  ((e.target as HTMLInputElement).style.borderBottomColor = "var(--border)")
+                }
               />
             </div>
           </div>
 
-          <div style={{ marginBottom: "1.5rem" }}>
-            <label style={labelStyle}>Asunto</label>
+          <div style={{ marginBottom: "2rem" }}>
+            <label style={labelBase}>Asunto</label>
             <input
               name="asunto"
               type="text"
               placeholder="Consulta sobre proyecto..."
               value={form.asunto}
               onChange={handleChange}
-              style={inputStyle}
+              style={inputBase}
+              onFocus={(e) =>
+                ((e.target as HTMLInputElement).style.borderBottomColor = "var(--accent)")
+              }
+              onBlur={(e) =>
+                ((e.target as HTMLInputElement).style.borderBottomColor = "var(--border)")
+              }
             />
           </div>
 
-          <div style={{ marginBottom: "1.5rem" }}>
-            <label style={labelStyle}>Mensaje</label>
+          <div style={{ marginBottom: "2rem" }}>
+            <label style={labelBase}>Mensaje</label>
             <textarea
               name="mensaje"
-              placeholder="Tu mensaje aquí..."
-              rows={4}
+              placeholder="Cuéntame tu proyecto o consulta..."
+              rows={5}
               value={form.mensaje}
               onChange={handleChange}
-              style={{ ...inputStyle, resize: "vertical" }}
+              style={{ ...inputBase, resize: "none" }}
+              onFocus={(e) =>
+                ((e.target as HTMLTextAreaElement).style.borderBottomColor = "var(--accent)")
+              }
+              onBlur={(e) =>
+                ((e.target as HTMLTextAreaElement).style.borderBottomColor = "var(--border)")
+              }
             />
           </div>
 
@@ -305,58 +338,94 @@ export default function Contacto() {
             disabled={formState === "loading"}
             style={{
               width: "100%",
-              padding: "1rem",
-              background: "#7c3aed",
+              padding: "0.9rem",
+              background: formState === "loading" ? "var(--border)" : "var(--accent)",
               color: "#fff",
+              fontFamily: "'JetBrains Mono', monospace",
               fontWeight: 700,
-              fontSize: "0.95rem",
-              borderRadius: "0.75rem",
+              fontSize: "0.7rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.12em",
+              borderRadius: "0.6rem",
               border: "none",
               cursor: formState === "loading" ? "not-allowed" : "pointer",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               gap: "0.5rem",
-              opacity: formState === "loading" ? 0.7 : 1,
-              transition: "box-shadow 0.2s, opacity 0.2s",
+              transition: "background 0.2s, box-shadow 0.2s, transform 0.2s",
             }}
             onMouseEnter={(e) => {
-              if (formState !== "loading")
-                (e.currentTarget as HTMLButtonElement).style.boxShadow =
-                  "0 0 20px rgba(124, 58, 237, 0.35)";
+              if (formState !== "loading") {
+                const btn = e.currentTarget as HTMLButtonElement;
+                btn.style.background = "var(--accent-hover)";
+                btn.style.boxShadow = "0 0 25px rgba(124,58,237,0.35)";
+                btn.style.transform = "translateY(-1px)";
+              }
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.boxShadow = "none";
+              const btn = e.currentTarget as HTMLButtonElement;
+              btn.style.background =
+                formState === "loading" ? "var(--border)" : "var(--accent)";
+              btn.style.boxShadow = "none";
+              btn.style.transform = "translateY(0)";
             }}
           >
-            {formState === "loading" ? "Enviando..." : "Send Message →"}
+            {formState === "loading" ? "Enviando..." : "Enviar mensaje →"}
           </button>
 
           {formState === "success" && (
-            <p
+            <div
               style={{
                 marginTop: "1rem",
-                color: "#34d399",
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.75rem",
-                textAlign: "center",
+                padding: "0.75rem 1rem",
+                background: "rgba(52,211,153,0.07)",
+                border: "1px solid rgba(52,211,153,0.2)",
+                borderRadius: "0.5rem",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
               }}
             >
-              ✓ Mensaje enviado correctamente
-            </p>
+              <span style={{ color: "#34d399", fontSize: "0.9rem" }}>✓</span>
+              <p
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: "0.62rem",
+                  color: "#34d399",
+                  letterSpacing: "0.05em",
+                }}
+              >
+                Mensaje enviado correctamente
+              </p>
+            </div>
           )}
+
           {formState === "error" && (
-            <p
+            <div
               style={{
                 marginTop: "1rem",
-                color: "#f87171",
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.75rem",
-                textAlign: "center",
+                padding: "0.75rem 1rem",
+                background: "rgba(248,113,113,0.07)",
+                border: "1px solid rgba(248,113,113,0.2)",
+                borderRadius: "0.5rem",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
               }}
             >
-              ✗ Error al enviar. Inténtalo de nuevo.
-            </p>
+              <span style={{ color: "#f87171", fontSize: "0.9rem" }}>✗</span>
+              <p
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: "0.62rem",
+                  color: "#f87171",
+                  letterSpacing: "0.05em",
+                }}
+              >
+                Error al enviar. Inténtalo de nuevo.
+              </p>
+            </div>
           )}
         </div>
       </div>
