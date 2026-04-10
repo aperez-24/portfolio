@@ -1,16 +1,27 @@
+"use client";
+
 const tecnologias = [
-  { nombre: "HTML5", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
-  { nombre: "CSS3", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+  // Frontend
+  { nombre: "HTML5",      icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+  { nombre: "CSS3",       icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
   { nombre: "JavaScript", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
   { nombre: "TypeScript", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-  { nombre: "Java", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" }, // <-- Nueva incorporación
-  { nombre: "PHP", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
-  { nombre: "MySQL", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-  { nombre: "Next.js", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
-  { nombre: "Tailwind", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
-  { nombre: "Git", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-  { nombre: "GitHub", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
-  { nombre: "VS Code", icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
+  { nombre: "React",      icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+  { nombre: "Next.js",    icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+  { nombre: "Tailwind",   icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+  { nombre: "Bootstrap",  icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" },
+  // Backend & DB
+  { nombre: "PHP",        icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
+  { nombre: "Java",       icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+  { nombre: "MySQL",      icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+  { nombre: "MariaDB",    icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mariadb/mariadb-original.svg" },
+  { nombre: "Apache",     icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg" },
+  // Tools & Infra
+  { nombre: "Git",        icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+  { nombre: "GitHub",     icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+  { nombre: "Linux",      icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
+  { nombre: "WordPress",  icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg" },
+  { nombre: "VS Code",    icono: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
 ];
 
 const stats = [
@@ -47,7 +58,7 @@ export default function SobreMi() {
               marginBottom: "1rem",
             }}
           >
-            01 // Sobre Mí
+            01 // Identity
           </p>
 
           <h2
@@ -135,44 +146,56 @@ export default function SobreMi() {
             tecnologías
           </p>
 
+          {/* Grid de iconos — 6 columnas para que quepan los 18 */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: "0.75rem",
+              gridTemplateColumns: "repeat(6, 1fr)",
+              gap: "0.6rem",
             }}
           >
             {tecnologias.map((tech) => (
               <div
                 key={tech.nombre}
+                title={tech.nombre}
                 style={{
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  gap: "0.5rem",
-                  padding: "0.75rem 0.5rem",
+                  gap: "0.4rem",
+                  padding: "0.65rem 0.25rem",
                   background: "#131318",
                   border: "1px solid rgba(74, 68, 85, 0.2)",
                   borderRadius: "0.75rem",
+                  transition: "border-color 0.2s, background 0.2s",
+                  cursor: "default",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(124, 58, 237, 0.4)";
+                  e.currentTarget.style.background = "#1a1a22";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(74, 68, 85, 0.2)";
+                  e.currentTarget.style.background = "#131318";
                 }}
               >
                 <img
-                src={tech.icono}
-                alt={tech.nombre}
-                width={28}
-                height={28}
-                style={{ 
-                    opacity: 0.75,
-                    filter: (tech.nombre === "GitHub") ? "invert(1) brightness(1)" : "none"
-                }}
+                  src={tech.icono}
+                  alt={tech.nombre}
+                  width={24}
+                  height={24}
+                  style={{
+                    opacity: 0.8,
+                    filter: tech.nombre === "GitHub" || tech.nombre === "WordPress" ? "invert(1) brightness(1)" : "none",
+                  }}
                 />
                 <span
                   style={{
                     fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: "0.6rem",
+                    fontSize: "0.52rem",
                     color: "#94a3b8",
                     textAlign: "center",
-                    lineHeight: 1.3,
+                    lineHeight: 1.2,
                   }}
                 >
                   {tech.nombre}
@@ -181,6 +204,7 @@ export default function SobreMi() {
             ))}
           </div>
 
+          {/* Stats */}
           <div
             style={{
               display: "grid",
