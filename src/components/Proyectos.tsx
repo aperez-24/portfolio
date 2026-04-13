@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { proyectos } from "@/data/proyectos";
 
@@ -141,7 +142,7 @@ export default function Proyectos() {
                     : "var(--border)";
                 }}
               >
-                {/* Image */}
+                {/* Image — next/image con fill */}
                 <div
                   style={{
                     height: "11rem",
@@ -151,26 +152,16 @@ export default function Proyectos() {
                     flexShrink: 0,
                   }}
                 >
-                  <img
+                  <Image
                     src={proyecto.imagen}
                     alt={proyecto.titulo}
+                    fill
                     style={{
-                      width: "100%",
-                      height: "100%",
                       objectFit: "cover",
                       opacity: 0.65,
                       transition: "opacity 0.4s ease, transform 0.5s ease",
                     }}
-                    onMouseEnter={(e) => {
-                      const img = e.currentTarget as HTMLImageElement;
-                      img.style.opacity = "0.85";
-                      img.style.transform = "scale(1.04)";
-                    }}
-                    onMouseLeave={(e) => {
-                      const img = e.currentTarget as HTMLImageElement;
-                      img.style.opacity = "0.65";
-                      img.style.transform = "scale(1)";
-                    }}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                   />
                   <div
                     style={{
@@ -178,6 +169,7 @@ export default function Proyectos() {
                       inset: 0,
                       background:
                         "linear-gradient(to bottom, transparent 30%, var(--bg-secondary) 100%)",
+                      zIndex: 1,
                     }}
                   />
                 </div>

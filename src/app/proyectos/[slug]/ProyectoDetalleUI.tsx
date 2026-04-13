@@ -1,14 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import { motion, Variants } from "framer-motion";
 import { proyectos } from "@/data/proyectos";
 import { Proyecto } from "@/types/proyecto";
+import Navbar from "@/components/Navbar";
 
-export default function ProyectoDetalleUI({
-  proyecto,
-}: {
-  proyecto: Proyecto;
-}) {
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (delay: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+      delay,
+    },
+  }),
+};
+
+export default function ProyectoDetalleUI({ proyecto }: { proyecto: Proyecto }) {
   const esFeatured = proyecto.badgeTipo === "featured";
 
   return (
@@ -18,16 +30,16 @@ export default function ProyectoDetalleUI({
         minHeight: "100vh",
         color: "var(--text-primary)",
         fontFamily: "'Inter', sans-serif",
+        paddingTop: "72px", // Compensa el Navbar fixed
       }}
     >
-      {/* ── Top bar ── */}
+      {/* ── Navbar global (fixed, flota sobre el contenido) ── */}
+      <Navbar />
+
+      {/* ── Barra secundaria con "Volver" — flujo normal, pegada al Navbar ── */}
       <div
         style={{
-          position: "sticky",
-          top: 0,
-          zIndex: 50,
-          background: "rgba(14, 14, 19, 0.85)",
-          backdropFilter: "blur(16px)",
+          background: "rgba(14, 14, 19, 0.95)",
           borderBottom: "1px solid var(--border-faint)",
         }}
       >
@@ -35,7 +47,7 @@ export default function ProyectoDetalleUI({
           style={{
             maxWidth: "1200px",
             margin: "0 auto",
-            padding: "1.25rem 2rem",
+            padding: "0.85rem 2rem",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -53,9 +65,16 @@ export default function ProyectoDetalleUI({
               letterSpacing: "0.15em",
               color: "var(--text-muted)",
               textDecoration: "none",
+              transition: "color 0.2s",
             }}
+            onMouseEnter={(e) =>
+              ((e.currentTarget as HTMLAnchorElement).style.color = "var(--accent-hover)")
+            }
+            onMouseLeave={(e) =>
+              ((e.currentTarget as HTMLAnchorElement).style.color = "var(--text-muted)")
+            }
           >
-            ← Volver
+            ← Volver al portfolio
           </Link>
           <span
             style={{
@@ -66,19 +85,13 @@ export default function ProyectoDetalleUI({
               color: "var(--text-muted)",
             }}
           >
-            Adrián Pérez — Portfolio
+            {proyecto.badge}
           </span>
         </div>
       </div>
 
       {/* ── Hero del proyecto ── */}
-      <section
-        style={{
-          position: "relative",
-          padding: "6rem 2rem 4rem",
-          overflow: "hidden",
-        }}
-      >
+      <section style={{ position: "relative", padding: "5rem 2rem 4rem", overflow: "hidden" }}>
         <div
           style={{
             position: "absolute",
@@ -87,9 +100,7 @@ export default function ProyectoDetalleUI({
             transform: "translateX(-50%)",
             width: "700px",
             height: "400px",
-            background: esFeatured
-              ? "rgba(124, 58, 237, 0.08)"
-              : "var(--accent-subtle)",
+            background: esFeatured ? "rgba(124, 58, 237, 0.08)" : "var(--accent-subtle)",
             borderRadius: "50%",
             filter: "blur(100px)",
             pointerEvents: "none",
@@ -97,51 +108,55 @@ export default function ProyectoDetalleUI({
         />
 
         <div style={{ maxWidth: "900px", margin: "0 auto", position: "relative" }}>
-          {/* Badge */}
-          {esFeatured ? (
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.4rem",
-                padding: "0.3rem 0.85rem",
-                background: "var(--color-featured-bg)",
-                border: "1px solid var(--color-featured-border)",
-                borderRadius: "9999px",
-                marginBottom: "1.5rem",
-              }}
-            >
-              <span style={{ color: "var(--color-featured)", fontSize: "0.75rem" }}>★</span>
-              <span
+          <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0}>
+            {esFeatured ? (
+              <div
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.4rem",
+                  padding: "0.3rem 0.85rem",
+                  background: "var(--color-featured-bg)",
+                  border: "1px solid var(--color-featured-border)",
+                  borderRadius: "9999px",
+                  marginBottom: "1.5rem",
+                }}
+              >
+                <span style={{ color: "var(--color-featured)", fontSize: "0.75rem" }}>★</span>
+                <span
+                  style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: "0.6rem",
+                    textTransform: "uppercase",
+                    color: "var(--color-featured)",
+                    fontWeight: 700,
+                    letterSpacing: "0.05em",
+                  }}
+                >
+                  Featured Client
+                </span>
+              </div>
+            ) : (
+              <p
                 style={{
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "0.6rem",
                   textTransform: "uppercase",
-                  color: "var(--color-featured)",
-                  fontWeight: 700,
-                  letterSpacing: "0.05em",
+                  letterSpacing: "0.2em",
+                  color: "var(--accent)",
+                  marginBottom: "1rem",
                 }}
               >
-                Featured Client
-              </span>
-            </div>
-          ) : (
-            <p
-              style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: "0.6rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.2em",
-                color: "var(--accent)",
-                marginBottom: "1rem",
-              }}
-            >
-              {proyecto.badge}
-            </p>
-          )}
+                {proyecto.badge}
+              </p>
+            )}
+          </motion.div>
 
-          {/* Título */}
-          <h1
+          <motion.h1
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            custom={0.08}
             style={{
               fontSize: "clamp(2rem, 5vw, 3.5rem)",
               fontWeight: 800,
@@ -155,10 +170,13 @@ export default function ProyectoDetalleUI({
             }}
           >
             {proyecto.titulo}
-          </h1>
+          </motion.h1>
 
-          {/* Descripción corta */}
-          <p
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            custom={0.16}
             style={{
               fontSize: "1.15rem",
               color: "var(--text-muted)",
@@ -168,11 +186,14 @@ export default function ProyectoDetalleUI({
             }}
           >
             {proyecto.descripcionCorta}
-          </p>
+          </motion.p>
 
-          {/* Meta: duración + rol */}
           {(proyecto.duracion || proyecto.rol) && (
-            <div
+            <motion.div
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={0.22}
               style={{
                 display: "flex",
                 flexWrap: "wrap",
@@ -223,22 +244,33 @@ export default function ProyectoDetalleUI({
                   </p>
                 </div>
               )}
-            </div>
+            </motion.div>
           )}
 
-          {/* Tech pills */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+            custom={0.28}
+            style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}
+          >
             {proyecto.tecnologias.map((tech) => (
               <span key={tech} className="tech-pill">
                 {tech}
               </span>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ── Imagen principal ── */}
-      <section style={{ padding: "0 2rem 5rem" }}>
+      <motion.section
+        variants={fadeUp}
+        initial="hidden"
+        animate="visible"
+        custom={0.35}
+        style={{ padding: "0 2rem 5rem" }}
+      >
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <div
             style={{
@@ -249,24 +281,20 @@ export default function ProyectoDetalleUI({
                 : "1px solid var(--border-subtle)",
               background: "var(--bg-secondary)",
               aspectRatio: "16/9",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              position: "relative",
             }}
           >
-            <img
+            <Image
               src={proyecto.imagen}
               alt={proyecto.titulo}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                opacity: 0.85,
-              }}
+              fill
+              style={{ objectFit: "cover", opacity: 0.85 }}
+              sizes="(max-width: 768px) 100vw, 900px"
+              priority
             />
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ── Cuerpo ── */}
       <section style={{ padding: "0 2rem 8rem" }}>
@@ -279,7 +307,6 @@ export default function ProyectoDetalleUI({
             gap: "4rem",
           }}
         >
-          {/* Descripción larga */}
           <div>
             <SectionLabel>Sobre el proyecto</SectionLabel>
             <p style={{ fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: 1.8 }}>
@@ -289,20 +316,11 @@ export default function ProyectoDetalleUI({
 
           <Divider />
 
-          {/* Características */}
           {proyecto.caracteristicas && proyecto.caracteristicas.length > 0 && (
             <>
               <div>
                 <SectionLabel>Funcionalidades clave</SectionLabel>
-                <ul
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "0.75rem",
-                    listStyle: "none",
-                    padding: 0,
-                  }}
-                >
+                <ul style={{ display: "flex", flexDirection: "column", gap: "0.75rem", listStyle: "none", padding: 0 }}>
                   {proyecto.caracteristicas.map((item, i) => (
                     <li
                       key={i}
@@ -334,7 +352,6 @@ export default function ProyectoDetalleUI({
             </>
           )}
 
-          {/* Retos y solución */}
           {(proyecto.retos || proyecto.solucion) && (
             <>
               <div
@@ -365,7 +382,6 @@ export default function ProyectoDetalleUI({
             </>
           )}
 
-          {/* Aprendizajes */}
           {proyecto.aprendizajes && (
             <>
               <div
@@ -385,7 +401,6 @@ export default function ProyectoDetalleUI({
             </>
           )}
 
-          {/* ── Links de acción ── MEJORADO */}
           <div>
             <SectionLabel>Ver el proyecto</SectionLabel>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
@@ -408,7 +423,6 @@ export default function ProyectoDetalleUI({
                     letterSpacing: "0.1em",
                     borderRadius: "0.75rem",
                     textDecoration: "none",
-                    border: "1px solid var(--accent)",
                     boxShadow: "0 0 30px rgba(124,58,237,0.2)",
                     transition: "background 0.2s, box-shadow 0.2s, transform 0.2s",
                   }}
@@ -428,7 +442,6 @@ export default function ProyectoDetalleUI({
                   Ver proyecto en vivo ↗
                 </a>
               )}
-
               {proyecto.linkRepo && (
                 <a
                   href={proyecto.linkRepo}
@@ -467,7 +480,6 @@ export default function ProyectoDetalleUI({
                   Ver código en GitHub ↗
                 </a>
               )}
-
               {!proyecto.linkDemo && !proyecto.linkRepo && (
                 <div
                   style={{
@@ -500,7 +512,6 @@ export default function ProyectoDetalleUI({
 
           <Divider />
 
-          {/* Otros proyectos */}
           <div>
             <p
               style={{
@@ -556,13 +567,7 @@ export default function ProyectoDetalleUI({
                     >
                       {p.badge}
                     </span>
-                    <span
-                      style={{
-                        fontSize: "0.9rem",
-                        fontWeight: 700,
-                        color: "var(--text-primary)",
-                      }}
-                    >
+                    <span style={{ fontSize: "0.9rem", fontWeight: 700, color: "var(--text-primary)" }}>
                       {p.titulo}
                     </span>
                   </Link>
@@ -574,8 +579,6 @@ export default function ProyectoDetalleUI({
     </main>
   );
 }
-
-// ── Componentes auxiliares internos ──
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (

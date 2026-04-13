@@ -14,9 +14,30 @@ export async function generateMetadata({
   const { slug } = await params;
   const proyecto = proyectos.find((p) => p.slug === slug);
   if (!proyecto) return {};
+
   return {
     title: `${proyecto.titulo} — Adrián Pérez Navarro`,
     description: proyecto.descripcionCorta,
+    openGraph: {
+      title: `${proyecto.titulo} — Adrián Pérez Navarro`,
+      description: proyecto.descripcionCorta,
+      url: `https://aperez24.dev/proyectos/${proyecto.slug}`,
+      images: [
+        {
+          url: proyecto.imagen,
+          width: 1200,
+          height: 630,
+          alt: proyecto.titulo,
+        },
+      ],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${proyecto.titulo} — Adrián Pérez Navarro`,
+      description: proyecto.descripcionCorta,
+      images: [proyecto.imagen],
+    },
   };
 }
 
