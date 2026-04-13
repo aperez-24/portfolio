@@ -385,65 +385,117 @@ export default function ProyectoDetalleUI({
             </>
           )}
 
-          {/* Links de acción */}
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-            {proyecto.linkDemo && (
-              <a
-                href={proyecto.linkDemo}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.6rem",
-                  padding: "0.85rem 1.75rem",
-                  background: "var(--accent)",
-                  color: "#fff",
-                  fontWeight: 700,
-                  fontSize: "0.9rem",
-                  borderRadius: "0.75rem",
-                  textDecoration: "none",
-                }}
-              >
-                Ver demo en vivo →
-              </a>
-            )}
-            {proyecto.linkRepo && (
-              <a
-                href={proyecto.linkRepo}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.6rem",
-                  padding: "0.85rem 1.75rem",
-                  background: "var(--bg-card)",
-                  border: "1px solid var(--border-subtle)",
-                  color: "var(--text-primary)",
-                  fontWeight: 700,
-                  fontSize: "0.9rem",
-                  borderRadius: "0.75rem",
-                  textDecoration: "none",
-                }}
-              >
-                Ver repositorio ↗
-              </a>
-            )}
-            {!proyecto.linkDemo && !proyecto.linkRepo && (
-              <p
-                style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.7rem",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
-                  color: "var(--text-muted)",
-                  padding: "0.85rem 0",
-                }}
-              >
-                Repositorio privado — disponible bajo petición
-              </p>
-            )}
+          {/* ── Links de acción ── MEJORADO */}
+          <div>
+            <SectionLabel>Ver el proyecto</SectionLabel>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+              {proyecto.linkDemo && (
+                <a
+                  href={proyecto.linkDemo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.6rem",
+                    padding: "0.9rem 1.75rem",
+                    background: "var(--accent)",
+                    color: "#fff",
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontWeight: 700,
+                    fontSize: "0.72rem",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
+                    borderRadius: "0.75rem",
+                    textDecoration: "none",
+                    border: "1px solid var(--accent)",
+                    boxShadow: "0 0 30px rgba(124,58,237,0.2)",
+                    transition: "background 0.2s, box-shadow 0.2s, transform 0.2s",
+                  }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLAnchorElement;
+                    el.style.background = "var(--accent-hover)";
+                    el.style.boxShadow = "0 0 45px rgba(124,58,237,0.4)";
+                    el.style.transform = "translateY(-1px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLAnchorElement;
+                    el.style.background = "var(--accent)";
+                    el.style.boxShadow = "0 0 30px rgba(124,58,237,0.2)";
+                    el.style.transform = "translateY(0)";
+                  }}
+                >
+                  Ver proyecto en vivo ↗
+                </a>
+              )}
+
+              {proyecto.linkRepo && (
+                <a
+                  href={proyecto.linkRepo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.6rem",
+                    padding: "0.9rem 1.75rem",
+                    background: "var(--bg-card)",
+                    border: "1px solid var(--border-subtle)",
+                    color: "var(--text-primary)",
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontWeight: 700,
+                    fontSize: "0.72rem",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
+                    borderRadius: "0.75rem",
+                    textDecoration: "none",
+                    transition: "border-color 0.2s, background 0.2s, transform 0.2s",
+                  }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLAnchorElement;
+                    el.style.borderColor = "rgba(124,58,237,0.4)";
+                    el.style.background = "var(--bg-card-hover)";
+                    el.style.transform = "translateY(-1px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLAnchorElement;
+                    el.style.borderColor = "var(--border-subtle)";
+                    el.style.background = "var(--bg-card)";
+                    el.style.transform = "translateY(0)";
+                  }}
+                >
+                  Ver código en GitHub ↗
+                </a>
+              )}
+
+              {!proyecto.linkDemo && !proyecto.linkRepo && (
+                <div
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.75rem",
+                    padding: "0.9rem 1.5rem",
+                    background: "var(--bg-secondary)",
+                    border: "1px solid var(--border-subtle)",
+                    borderRadius: "0.75rem",
+                  }}
+                >
+                  <span style={{ color: "var(--text-muted)", fontSize: "0.9rem" }}>🔒</span>
+                  <p
+                    style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: "0.65rem",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.1em",
+                      color: "var(--text-muted)",
+                      margin: 0,
+                    }}
+                  >
+                    Repositorio privado — disponible bajo petición
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
 
           <Divider />
@@ -480,6 +532,17 @@ export default function ProyectoDetalleUI({
                       textDecoration: "none",
                       flex: "1 1 200px",
                       maxWidth: "320px",
+                      transition: "border-color 0.2s, background 0.2s",
+                    }}
+                    onMouseEnter={(e) => {
+                      const el = e.currentTarget as HTMLAnchorElement;
+                      el.style.borderColor = "rgba(124,58,237,0.3)";
+                      el.style.background = "var(--bg-card)";
+                    }}
+                    onMouseLeave={(e) => {
+                      const el = e.currentTarget as HTMLAnchorElement;
+                      el.style.borderColor = "var(--border-subtle)";
+                      el.style.background = "var(--bg-secondary)";
                     }}
                   >
                     <span

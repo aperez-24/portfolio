@@ -12,7 +12,7 @@ export const proyectos: Proyecto[] = [
     imagen: "/images/projects/rivas.webp",
     badge: "Cliente Gubernamental ★",
     badgeTipo: "featured",
-
+    linkDemo: "https://ligas.deportividadyjuegolimpio.e",
     duracion: "4 meses",
     rol: "Desarrollador full stack en solitario",
     caracteristicas: [
@@ -41,7 +41,7 @@ export const proyectos: Proyecto[] = [
     imagen: "/images/projects/fitness.webp",
     badge: "Proyecto de Grado (TFG)",
     badgeTipo: "personal",
-
+    linkRepo: "https://github.com/aperez-24/fitness-app",
     duracion: "3 meses",
     rol: "Desarrollador full stack — Trabajo de Fin de Grado",
     caracteristicas: [
@@ -70,7 +70,7 @@ export const proyectos: Proyecto[] = [
     imagen: "/images/projects/artes-graficas.webp",
     badge: "Proyecto para Cliente",
     badgeTipo: "client",
-
+    linkDemo: "https://carbensl.com/",
     duracion: "6 semanas",
     rol: "Desarrollador front-end y responsable de despliegue",
     caracteristicas: [
