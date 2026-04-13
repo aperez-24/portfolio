@@ -1,17 +1,49 @@
 @import "tailwindcss";
 
 :root {
+  /* Fondos */
   --bg-primary: #0e0e13;
   --bg-secondary: #131318;
   --bg-card: #1f1f25;
   --bg-card-hover: #2a292f;
+
+  /* Acento violeta */
   --accent: #7c3aed;
   --accent-hover: #a78bfa;
   --accent-border: #5b21b6;
+  --accent-glow-sm: rgba(124, 58, 237, 0.2);
+  --accent-glow-md: rgba(124, 58, 237, 0.35);
+  --accent-glow-lg: rgba(124, 58, 237, 0.45);
+  --accent-subtle: rgba(124, 58, 237, 0.04);
+  --accent-subtle-border: rgba(124, 58, 237, 0.15);
+  --accent-overlay: rgba(124, 58, 237, 0.07);
+  --accent-overlay-hover: rgba(124, 58, 237, 0.4);
+
+  /* Textos */
   --text-primary: #e4e1e9;
   --text-secondary: #ccc3d8;
   --text-muted: #94a3b8;
+
+  /* Bordes */
   --border: #4a4455;
+  --border-subtle: rgba(74, 68, 85, 0.2);
+  --border-faint: rgba(74, 68, 85, 0.15);
+
+  /* Estados: éxito */
+  --color-success: #34d399;
+  --color-success-bg: rgba(52, 211, 153, 0.07);
+  --color-success-border: rgba(52, 211, 153, 0.2);
+
+  /* Estados: error */
+  --color-error: #f87171;
+  --color-error-bg: rgba(248, 113, 113, 0.07);
+  --color-error-border: rgba(248, 113, 113, 0.2);
+
+  /* Destacado (featured / badge dorado) */
+  --color-featured: #fbbf24;
+  --color-featured-bg: rgba(120, 80, 0, 0.18);
+  --color-featured-border: rgba(245, 158, 11, 0.3);
+  --color-featured-glow: rgba(245, 158, 11, 0.4);
 }
 
 * {
@@ -32,9 +64,9 @@ body {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #0e0e13; }
-::-webkit-scrollbar-thumb { background: #1f1f25; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #7c3aed; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--bg-card); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
 .tech-pill {
   font-family: 'JetBrains Mono', monospace;
@@ -42,13 +74,13 @@ body {
   text-transform: uppercase;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  border: 1px solid #5b21b6;
-  color: #a78bfa;
+  border: 1px solid var(--accent-border);
+  color: var(--accent-hover);
   background-color: rgba(19, 19, 24, 0.5);
 }
 
 .text-gradient {
-  background: linear-gradient(to right, #e4e1e9, #7c3aed);
+  background: linear-gradient(to right, var(--text-primary), var(--accent));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

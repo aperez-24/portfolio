@@ -9,10 +9,10 @@ const fadeUp: Variants = {
   visible: (delay: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { 
-      duration: 0.6, 
+    transition: {
+      duration: 0.6,
       ease: [0.16, 1, 0.3, 1],
-      delay 
+      delay,
     },
   }),
 };
@@ -39,7 +39,7 @@ export default function Proyectos() {
           right: "-5%",
           width: "500px",
           height: "500px",
-          background: "radial-gradient(circle, rgba(124,58,237,0.04) 0%, transparent 70%)",
+          background: "radial-gradient(circle, var(--accent-subtle) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
@@ -73,7 +73,7 @@ export default function Proyectos() {
               fontWeight: 800,
               letterSpacing: "-0.03em",
               lineHeight: 1.15,
-              color: "#e4e1e9",
+              color: "var(--text-primary)",
               marginBottom: "1.5rem",
             }}
           >
@@ -129,7 +129,7 @@ export default function Proyectos() {
                     ? "0 20px 60px rgba(124,58,237,0.18)"
                     : "0 20px 40px rgba(0,0,0,0.4)";
                   el.style.borderColor = isFeatured
-                    ? "rgba(124,58,237,0.5)"
+                    ? "var(--accent-overlay-hover)"
                     : "rgba(124,58,237,0.2)";
                 }}
                 onMouseLeave={(e) => {
@@ -200,20 +200,20 @@ export default function Proyectos() {
                           alignItems: "center",
                           gap: "0.4rem",
                           padding: "0.2rem 0.75rem",
-                          background: "rgba(120,80,0,0.18)",
-                          border: "1px solid rgba(245,158,11,0.3)",
+                          background: "var(--color-featured-bg)",
+                          border: "1px solid var(--color-featured-border)",
                           borderRadius: "9999px",
                           marginBottom: "0.875rem",
                         }}
                       >
-                        <span style={{ color: "#fbbf24", fontSize: "0.6rem" }}>★</span>
+                        <span style={{ color: "var(--color-featured)", fontSize: "0.6rem" }}>★</span>
                         <span
                           style={{
                             fontFamily: "'JetBrains Mono', monospace",
                             fontSize: "0.55rem",
                             textTransform: "uppercase",
                             letterSpacing: "0.08em",
-                            color: "#fbbf24",
+                            color: "var(--color-featured)",
                             fontWeight: 700,
                           }}
                         >

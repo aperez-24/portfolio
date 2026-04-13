@@ -34,10 +34,10 @@ const fadeUp: Variants = {
   visible: (delay: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { 
-      duration: 0.6, 
-      ease: [0.16, 1, 0.3, 1], // Ahora TS sabe que esto es un Bezier curve (Easing)
-      delay 
+    transition: {
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1],
+      delay,
     },
   }),
 };
@@ -72,7 +72,7 @@ export default function SobreMi() {
               fontSize: "0.65rem",
               textTransform: "uppercase",
               letterSpacing: "0.25em",
-              color: "#7c3aed",
+              color: "var(--accent)",
               marginBottom: "1rem",
             }}
           >
@@ -85,7 +85,7 @@ export default function SobreMi() {
               fontWeight: 800,
               letterSpacing: "-0.03em",
               lineHeight: 1.15,
-              color: "#e4e1e9",
+              color: "var(--text-primary)",
               marginBottom: "1.5rem",
             }}
           >
@@ -94,21 +94,21 @@ export default function SobreMi() {
           </h2>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-            <p style={{ color: "#94a3b8", lineHeight: 1.7, fontSize: "1rem" }}>
+            <p style={{ color: "var(--text-muted)", lineHeight: 1.7, fontSize: "1rem" }}>
               Soy Adrián Pérez Navarro, Técnico Superior en Desarrollo de
               Aplicaciones Web recién licenciado y con sede en Madrid. Desde el
               primer día del ciclo me centré en construir proyectos funcionales,
               no solo ejercicios.
             </p>
-            <p style={{ color: "#94a3b8", lineHeight: 1.7, fontSize: "1rem" }}>
+            <p style={{ color: "var(--text-muted)", lineHeight: 1.7, fontSize: "1rem" }}>
               Uno de esos proyectos fue un encargo real para el{" "}
-              <span style={{ color: "#e4e1e9", fontWeight: 500 }}>
+              <span style={{ color: "var(--text-primary)", fontWeight: 500 }}>
                 Ayuntamiento de Rivas-Vaciamadrid
               </span>
               : una plataforma web para gestionar deportes infantiles
               municipales, hoy en uso real.
             </p>
-            <p style={{ color: "#94a3b8", lineHeight: 1.7, fontSize: "1rem" }}>
+            <p style={{ color: "var(--text-muted)", lineHeight: 1.7, fontSize: "1rem" }}>
               Busco mi primer empleo como desarrollador web donde pueda seguir
               aprendiendo, aportar desde el primer día y crecer dentro de un
               equipo.
@@ -124,9 +124,9 @@ export default function SobreMi() {
               gap: "0.75rem",
               marginTop: "2rem",
               padding: "0.75rem 1.5rem",
-              background: "#1f1f25",
-              border: "1px solid rgba(74, 68, 85, 0.4)",
-              color: "#e4e1e9",
+              background: "var(--bg-card)",
+              border: "1px solid var(--border-subtle)",
+              color: "var(--text-primary)",
               fontWeight: 700,
               borderRadius: "0.75rem",
               textDecoration: "none",
@@ -135,22 +135,22 @@ export default function SobreMi() {
             }}
             onMouseEnter={(e) => {
               const el = e.currentTarget as HTMLAnchorElement;
-              el.style.borderColor = "rgba(124,58,237,0.4)";
-              el.style.background = "#2a292f";
+              el.style.borderColor = "var(--accent-overlay-hover)";
+              el.style.background = "var(--bg-card-hover)";
             }}
             onMouseLeave={(e) => {
               const el = e.currentTarget as HTMLAnchorElement;
-              el.style.borderColor = "rgba(74, 68, 85, 0.4)";
-              el.style.background = "#1f1f25";
+              el.style.borderColor = "var(--border-subtle)";
+              el.style.background = "var(--bg-card)";
             }}
           >
-            <span style={{ color: "#7c3aed" }}>↓</span>
+            <span style={{ color: "var(--accent)" }}>↓</span>
             Descargar CV
             <span
               style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: "0.6rem",
-                color: "#94a3b8",
+                color: "var(--text-muted)",
                 textTransform: "uppercase",
                 letterSpacing: "0.1em",
               }}
@@ -174,7 +174,7 @@ export default function SobreMi() {
               fontSize: "0.65rem",
               textTransform: "uppercase",
               letterSpacing: "0.25em",
-              color: "#94a3b8",
+              color: "var(--text-muted)",
               marginBottom: "1.25rem",
             }}
           >
@@ -207,19 +207,19 @@ export default function SobreMi() {
                   alignItems: "center",
                   gap: "0.4rem",
                   padding: "0.65rem 0.25rem",
-                  background: "#131318",
-                  border: "1px solid rgba(74, 68, 85, 0.2)",
+                  background: "var(--bg-secondary)",
+                  border: "1px solid var(--border-subtle)",
                   borderRadius: "0.75rem",
                   transition: "border-color 0.2s, background 0.2s",
                   cursor: "default",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(124, 58, 237, 0.4)";
-                  e.currentTarget.style.background = "#1a1a22";
+                  e.currentTarget.style.borderColor = "var(--accent-overlay-hover)";
+                  e.currentTarget.style.background = "var(--bg-card)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(74, 68, 85, 0.2)";
-                  e.currentTarget.style.background = "#131318";
+                  e.currentTarget.style.borderColor = "var(--border-subtle)";
+                  e.currentTarget.style.background = "var(--bg-secondary)";
                 }}
               >
                 <img
@@ -239,7 +239,7 @@ export default function SobreMi() {
                   style={{
                     fontFamily: "'JetBrains Mono', monospace",
                     fontSize: "0.52rem",
-                    color: "#94a3b8",
+                    color: "var(--text-muted)",
                     textAlign: "center",
                     lineHeight: 1.2,
                   }}
@@ -268,8 +268,8 @@ export default function SobreMi() {
                 transition={{ duration: 0.5, delay: 0.3 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 style={{
                   padding: "1rem",
-                  background: "#131318",
-                  border: "1px solid rgba(74, 68, 85, 0.2)",
+                  background: "var(--bg-secondary)",
+                  border: "1px solid var(--border-subtle)",
                   borderRadius: "0.75rem",
                   textAlign: "center",
                 }}
@@ -278,7 +278,7 @@ export default function SobreMi() {
                   style={{
                     fontSize: "1.75rem",
                     fontWeight: 800,
-                    color: "#7c3aed",
+                    color: "var(--accent)",
                     letterSpacing: "-0.03em",
                     lineHeight: 1,
                   }}
@@ -291,7 +291,7 @@ export default function SobreMi() {
                     fontSize: "0.6rem",
                     textTransform: "uppercase",
                     letterSpacing: "0.1em",
-                    color: "#94a3b8",
+                    color: "var(--text-muted)",
                     marginTop: "0.4rem",
                     lineHeight: 1.4,
                   }}

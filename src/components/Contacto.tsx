@@ -88,7 +88,7 @@ export default function Contacto() {
           width: "700px",
           height: "300px",
           background:
-            "radial-gradient(ellipse, rgba(124,58,237,0.06) 0%, transparent 70%)",
+            "radial-gradient(ellipse, var(--accent-overlay) 0%, transparent 70%)",
           pointerEvents: "none",
         }}
       />
@@ -124,11 +124,11 @@ export default function Contacto() {
               fontWeight: 800,
               letterSpacing: "-0.03em",
               lineHeight: 1.15,
-              color: "#e4e1e9",
+              color: "var(--text-primary)",
               marginBottom: "1.5rem",
             }}
           >
-            Ponte en {" "}
+            Ponte en{" "}
             <span className="text-gradient">contacto</span>.
           </h2>
           <p
@@ -150,8 +150,8 @@ export default function Contacto() {
               {
                 icon: "✉",
                 label: "Email",
-                value: "adrianpereznavarro@gmail.com",
-                href: "mailto:adrianpereznavarro@gmail.com",
+                value: "apereznavarro24@gmail.com",
+                href: "mailto:apereznavarro24@gmail.com",
               },
               {
                 icon: "📍",
@@ -196,6 +196,8 @@ export default function Contacto() {
                   {href ? (
                     <a
                       href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       style={{
                         fontWeight: 600,
                         color: "var(--text-secondary)",
@@ -359,7 +361,7 @@ export default function Contacto() {
               if (formState !== "loading") {
                 const btn = e.currentTarget as HTMLButtonElement;
                 btn.style.background = "var(--accent-hover)";
-                btn.style.boxShadow = "0 0 25px rgba(124,58,237,0.35)";
+                btn.style.boxShadow = `0 0 25px var(--accent-glow-md)`;
                 btn.style.transform = "translateY(-1px)";
               }
             }}
@@ -379,20 +381,20 @@ export default function Contacto() {
               style={{
                 marginTop: "1rem",
                 padding: "0.75rem 1rem",
-                background: "rgba(52,211,153,0.07)",
-                border: "1px solid rgba(52,211,153,0.2)",
+                background: "var(--color-success-bg)",
+                border: "1px solid var(--color-success-border)",
                 borderRadius: "0.5rem",
                 display: "flex",
                 alignItems: "center",
                 gap: "0.5rem",
               }}
             >
-              <span style={{ color: "#34d399", fontSize: "0.9rem" }}>✓</span>
+              <span style={{ color: "var(--color-success)", fontSize: "0.9rem" }}>✓</span>
               <p
                 style={{
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "0.62rem",
-                  color: "#34d399",
+                  color: "var(--color-success)",
                   letterSpacing: "0.05em",
                 }}
               >
@@ -406,20 +408,20 @@ export default function Contacto() {
               style={{
                 marginTop: "1rem",
                 padding: "0.75rem 1rem",
-                background: "rgba(248,113,113,0.07)",
-                border: "1px solid rgba(248,113,113,0.2)",
+                background: "var(--color-error-bg)",
+                border: "1px solid var(--color-error-border)",
                 borderRadius: "0.5rem",
                 display: "flex",
                 alignItems: "center",
                 gap: "0.5rem",
               }}
             >
-              <span style={{ color: "#f87171", fontSize: "0.9rem" }}>✗</span>
+              <span style={{ color: "var(--color-error)", fontSize: "0.9rem" }}>✗</span>
               <p
                 style={{
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "0.62rem",
-                  color: "#f87171",
+                  color: "var(--color-error)",
                   letterSpacing: "0.05em",
                 }}
               >

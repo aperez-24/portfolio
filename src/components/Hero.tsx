@@ -7,10 +7,10 @@ const fadeUp: Variants = {
   visible: (delay: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { 
-      duration: 0.8, 
+    transition: {
+      duration: 0.8,
       ease: [0.16, 1, 0.3, 1],
-      delay 
+      delay,
     },
   }),
 };
@@ -54,7 +54,7 @@ export default function Hero() {
           transform: "translate(-50%, -50%)",
           width: "900px",
           height: "500px",
-          background: "radial-gradient(ellipse, rgba(124,58,237,0.08) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse, var(--accent-overlay) 0%, transparent 70%)",
           zIndex: 0,
           pointerEvents: "none",
         }}
@@ -69,7 +69,7 @@ export default function Hero() {
           transform: "translateX(-50%)",
           width: "60%",
           height: "1px",
-          background: "linear-gradient(90deg, transparent, rgba(124,58,237,0.25), transparent)",
+          background: "linear-gradient(90deg, transparent, var(--accent-glow-md), transparent)",
           zIndex: 1,
         }}
       />
@@ -99,8 +99,8 @@ export default function Hero() {
               width: "6px",
               height: "6px",
               borderRadius: "9999px",
-              background: "#34d399",
-              boxShadow: "0 0 6px rgba(52,211,153,0.7)",
+              background: "var(--color-success)",
+              boxShadow: "0 0 6px var(--color-success-border)",
               animation: "pulse 2s infinite",
               display: "block",
               flexShrink: 0,
@@ -219,19 +219,19 @@ export default function Hero() {
               borderRadius: "0.6rem",
               textDecoration: "none",
               border: "1px solid var(--accent)",
-              boxShadow: "0 0 30px rgba(124,58,237,0.2)",
+              boxShadow: `0 0 30px var(--accent-glow-sm)`,
               transition: "background 0.2s, box-shadow 0.2s, transform 0.2s",
             }}
             onMouseEnter={(e) => {
               const el = e.currentTarget as HTMLAnchorElement;
               el.style.background = "var(--accent-hover)";
-              el.style.boxShadow = "0 0 50px rgba(124,58,237,0.45)";
+              el.style.boxShadow = `0 0 50px var(--accent-glow-lg)`;
               el.style.transform = "translateY(-1px)";
             }}
             onMouseLeave={(e) => {
               const el = e.currentTarget as HTMLAnchorElement;
               el.style.background = "var(--accent)";
-              el.style.boxShadow = "0 0 30px rgba(124,58,237,0.2)";
+              el.style.boxShadow = `0 0 30px var(--accent-glow-sm)`;
               el.style.transform = "translateY(0)";
             }}
           >
@@ -260,9 +260,9 @@ export default function Hero() {
             }}
             onMouseEnter={(e) => {
               const el = e.currentTarget as HTMLAnchorElement;
-              el.style.borderColor = "rgba(124,58,237,0.45)";
+              el.style.borderColor = "var(--accent-overlay-hover)";
               el.style.color = "var(--text-primary)";
-              el.style.background = "rgba(124,58,237,0.05)";
+              el.style.background = "var(--accent-overlay)";
               el.style.transform = "translateY(-1px)";
             }}
             onMouseLeave={(e) => {

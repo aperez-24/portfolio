@@ -14,9 +14,9 @@ export default function ProyectoDetalleUI({
   return (
     <main
       style={{
-        background: "#0e0e13",
+        background: "var(--bg-primary)",
         minHeight: "100vh",
-        color: "#e4e1e9",
+        color: "var(--text-primary)",
         fontFamily: "'Inter', sans-serif",
       }}
     >
@@ -28,7 +28,7 @@ export default function ProyectoDetalleUI({
           zIndex: 50,
           background: "rgba(14, 14, 19, 0.85)",
           backdropFilter: "blur(16px)",
-          borderBottom: "1px solid rgba(74, 68, 85, 0.15)",
+          borderBottom: "1px solid var(--border-faint)",
         }}
       >
         <div
@@ -51,7 +51,7 @@ export default function ProyectoDetalleUI({
               fontSize: "0.7rem",
               textTransform: "uppercase",
               letterSpacing: "0.15em",
-              color: "#94a3b8",
+              color: "var(--text-muted)",
               textDecoration: "none",
             }}
           >
@@ -63,7 +63,7 @@ export default function ProyectoDetalleUI({
               fontSize: "0.6rem",
               textTransform: "uppercase",
               letterSpacing: "0.2em",
-              color: "rgba(148, 163, 184, 0.4)",
+              color: "var(--text-muted)",
             }}
           >
             Adrián Pérez — Portfolio
@@ -89,7 +89,7 @@ export default function ProyectoDetalleUI({
             height: "400px",
             background: esFeatured
               ? "rgba(124, 58, 237, 0.08)"
-              : "rgba(124, 58, 237, 0.05)",
+              : "var(--accent-subtle)",
             borderRadius: "50%",
             filter: "blur(100px)",
             pointerEvents: "none",
@@ -105,19 +105,19 @@ export default function ProyectoDetalleUI({
                 alignItems: "center",
                 gap: "0.4rem",
                 padding: "0.3rem 0.85rem",
-                background: "rgba(120, 80, 0, 0.25)",
-                border: "1px solid rgba(245, 158, 11, 0.4)",
+                background: "var(--color-featured-bg)",
+                border: "1px solid var(--color-featured-border)",
                 borderRadius: "9999px",
                 marginBottom: "1.5rem",
               }}
             >
-              <span style={{ color: "#fbbf24", fontSize: "0.75rem" }}>★</span>
+              <span style={{ color: "var(--color-featured)", fontSize: "0.75rem" }}>★</span>
               <span
                 style={{
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "0.6rem",
                   textTransform: "uppercase",
-                  color: "#fbbf24",
+                  color: "var(--color-featured)",
                   fontWeight: 700,
                   letterSpacing: "0.05em",
                 }}
@@ -132,7 +132,7 @@ export default function ProyectoDetalleUI({
                 fontSize: "0.6rem",
                 textTransform: "uppercase",
                 letterSpacing: "0.2em",
-                color: "#7c3aed",
+                color: "var(--accent)",
                 marginBottom: "1rem",
               }}
             >
@@ -148,7 +148,7 @@ export default function ProyectoDetalleUI({
               letterSpacing: "-0.03em",
               lineHeight: 1.1,
               marginBottom: "1.5rem",
-              background: "linear-gradient(to right, #e4e1e9, #a78bfa)",
+              background: "linear-gradient(to right, var(--text-primary), var(--accent-hover))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -161,7 +161,7 @@ export default function ProyectoDetalleUI({
           <p
             style={{
               fontSize: "1.15rem",
-              color: "#94a3b8",
+              color: "var(--text-muted)",
               lineHeight: 1.7,
               maxWidth: "640px",
               marginBottom: "2.5rem",
@@ -179,8 +179,8 @@ export default function ProyectoDetalleUI({
                 gap: "2.5rem",
                 marginBottom: "2.5rem",
                 padding: "1.25rem 1.5rem",
-                background: "#131318",
-                border: "1px solid rgba(74, 68, 85, 0.2)",
+                background: "var(--bg-secondary)",
+                border: "1px solid var(--border-subtle)",
                 borderRadius: "0.75rem",
                 width: "fit-content",
               }}
@@ -193,13 +193,13 @@ export default function ProyectoDetalleUI({
                       fontSize: "0.55rem",
                       textTransform: "uppercase",
                       letterSpacing: "0.15em",
-                      color: "#94a3b8",
+                      color: "var(--text-muted)",
                       marginBottom: "0.25rem",
                     }}
                   >
                     Duración
                   </p>
-                  <p style={{ fontSize: "0.95rem", fontWeight: 600, color: "#e4e1e9" }}>
+                  <p style={{ fontSize: "0.95rem", fontWeight: 600, color: "var(--text-primary)" }}>
                     {proyecto.duracion}
                   </p>
                 </div>
@@ -212,13 +212,13 @@ export default function ProyectoDetalleUI({
                       fontSize: "0.55rem",
                       textTransform: "uppercase",
                       letterSpacing: "0.15em",
-                      color: "#94a3b8",
+                      color: "var(--text-muted)",
                       marginBottom: "0.25rem",
                     }}
                   >
                     Rol
                   </p>
-                  <p style={{ fontSize: "0.95rem", fontWeight: 600, color: "#e4e1e9" }}>
+                  <p style={{ fontSize: "0.95rem", fontWeight: 600, color: "var(--text-primary)" }}>
                     {proyecto.rol}
                   </p>
                 </div>
@@ -229,20 +229,7 @@ export default function ProyectoDetalleUI({
           {/* Tech pills */}
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
             {proyecto.tecnologias.map((tech) => (
-              <span
-                key={tech}
-                style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: "0.65rem",
-                  textTransform: "uppercase",
-                  padding: "0.5rem 1rem",
-                  borderRadius: "0.5rem",
-                  border: "1px solid #5b21b6",
-                  color: "#a78bfa",
-                  background: "rgba(19, 19, 24, 0.5)",
-                  letterSpacing: "0.05em",
-                }}
-              >
+              <span key={tech} className="tech-pill">
                 {tech}
               </span>
             ))}
@@ -259,8 +246,8 @@ export default function ProyectoDetalleUI({
               overflow: "hidden",
               border: esFeatured
                 ? "2px solid rgba(139, 92, 246, 0.4)"
-                : "1px solid rgba(74, 68, 85, 0.2)",
-              background: "#131318",
+                : "1px solid var(--border-subtle)",
+              background: "var(--bg-secondary)",
               aspectRatio: "16/9",
               display: "flex",
               alignItems: "center",
@@ -295,7 +282,7 @@ export default function ProyectoDetalleUI({
           {/* Descripción larga */}
           <div>
             <SectionLabel>Sobre el proyecto</SectionLabel>
-            <p style={{ fontSize: "1.05rem", color: "#ccc3d8", lineHeight: 1.8 }}>
+            <p style={{ fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: 1.8 }}>
               {proyecto.descripcionLarga}
             </p>
           </div>
@@ -324,7 +311,7 @@ export default function ProyectoDetalleUI({
                         alignItems: "flex-start",
                         gap: "0.75rem",
                         fontSize: "0.95rem",
-                        color: "#ccc3d8",
+                        color: "var(--text-secondary)",
                         lineHeight: 1.6,
                       }}
                     >
@@ -335,7 +322,7 @@ export default function ProyectoDetalleUI({
                           width: "5px",
                           height: "5px",
                           borderRadius: "9999px",
-                          background: "#7c3aed",
+                          background: "var(--accent)",
                         }}
                       />
                       {item}
@@ -360,7 +347,7 @@ export default function ProyectoDetalleUI({
                 {proyecto.retos && (
                   <div>
                     <SectionLabel>El reto</SectionLabel>
-                    <p style={{ fontSize: "0.95rem", color: "#ccc3d8", lineHeight: 1.8 }}>
+                    <p style={{ fontSize: "0.95rem", color: "var(--text-secondary)", lineHeight: 1.8 }}>
                       {proyecto.retos}
                     </p>
                   </div>
@@ -368,7 +355,7 @@ export default function ProyectoDetalleUI({
                 {proyecto.solucion && (
                   <div>
                     <SectionLabel>La solución</SectionLabel>
-                    <p style={{ fontSize: "0.95rem", color: "#ccc3d8", lineHeight: 1.8 }}>
+                    <p style={{ fontSize: "0.95rem", color: "var(--text-secondary)", lineHeight: 1.8 }}>
                       {proyecto.solucion}
                     </p>
                   </div>
@@ -384,13 +371,13 @@ export default function ProyectoDetalleUI({
               <div
                 style={{
                   padding: "2rem",
-                  background: "rgba(124, 58, 237, 0.04)",
-                  border: "1px solid rgba(124, 58, 237, 0.15)",
+                  background: "var(--accent-subtle)",
+                  border: "1px solid var(--accent-subtle-border)",
                   borderRadius: "0.75rem",
                 }}
               >
                 <SectionLabel>Qué aprendí</SectionLabel>
-                <p style={{ fontSize: "0.95rem", color: "#ccc3d8", lineHeight: 1.8 }}>
+                <p style={{ fontSize: "0.95rem", color: "var(--text-secondary)", lineHeight: 1.8 }}>
                   {proyecto.aprendizajes}
                 </p>
               </div>
@@ -410,7 +397,7 @@ export default function ProyectoDetalleUI({
                   alignItems: "center",
                   gap: "0.6rem",
                   padding: "0.85rem 1.75rem",
-                  background: "#7c3aed",
+                  background: "var(--accent)",
                   color: "#fff",
                   fontWeight: 700,
                   fontSize: "0.9rem",
@@ -431,9 +418,9 @@ export default function ProyectoDetalleUI({
                   alignItems: "center",
                   gap: "0.6rem",
                   padding: "0.85rem 1.75rem",
-                  background: "#1f1f25",
-                  border: "1px solid rgba(74, 68, 85, 0.4)",
-                  color: "#e4e1e9",
+                  background: "var(--bg-card)",
+                  border: "1px solid var(--border-subtle)",
+                  color: "var(--text-primary)",
                   fontWeight: 700,
                   fontSize: "0.9rem",
                   borderRadius: "0.75rem",
@@ -450,7 +437,7 @@ export default function ProyectoDetalleUI({
                   fontSize: "0.7rem",
                   textTransform: "uppercase",
                   letterSpacing: "0.1em",
-                  color: "rgba(148, 163, 184, 0.4)",
+                  color: "var(--text-muted)",
                   padding: "0.85rem 0",
                 }}
               >
@@ -469,7 +456,7 @@ export default function ProyectoDetalleUI({
                 fontSize: "0.6rem",
                 textTransform: "uppercase",
                 letterSpacing: "0.2em",
-                color: "rgba(148, 163, 184, 0.4)",
+                color: "var(--text-muted)",
                 marginBottom: "1.5rem",
               }}
             >
@@ -487,8 +474,8 @@ export default function ProyectoDetalleUI({
                       flexDirection: "column",
                       gap: "0.3rem",
                       padding: "1rem 1.5rem",
-                      background: "#131318",
-                      border: "1px solid rgba(74, 68, 85, 0.2)",
+                      background: "var(--bg-secondary)",
+                      border: "1px solid var(--border-subtle)",
                       borderRadius: "0.75rem",
                       textDecoration: "none",
                       flex: "1 1 200px",
@@ -501,7 +488,7 @@ export default function ProyectoDetalleUI({
                         fontSize: "0.55rem",
                         textTransform: "uppercase",
                         letterSpacing: "0.1em",
-                        color: "#7c3aed",
+                        color: "var(--accent)",
                       }}
                     >
                       {p.badge}
@@ -510,7 +497,7 @@ export default function ProyectoDetalleUI({
                       style={{
                         fontSize: "0.9rem",
                         fontWeight: 700,
-                        color: "#e4e1e9",
+                        color: "var(--text-primary)",
                       }}
                     >
                       {p.titulo}
@@ -535,7 +522,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
         fontSize: "0.6rem",
         textTransform: "uppercase",
         letterSpacing: "0.2em",
-        color: "#7c3aed",
+        color: "var(--accent)",
         marginBottom: "1rem",
       }}
     >
@@ -545,5 +532,5 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 function Divider() {
-  return <div style={{ height: "1px", background: "rgba(74, 68, 85, 0.15)" }} />;
+  return <div style={{ height: "1px", background: "var(--border-faint)" }} />;
 }
