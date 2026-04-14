@@ -38,7 +38,7 @@ export const proyectos: Proyecto[] = [
     descripcionLarga:
       "Proyecto de fin de grado enfocado en la retención de usuarios mediante gamificación. La plataforma permite el tracking de rutinas y dietas, integrando un motor de competición con rankings dinámicos y sistemas de logros. Diseñada bajo principios de escalabilidad y una experiencia de usuario (UX) orientada al rendimiento.",
     tecnologias: ["PHP", "MySQL", "JavaScript", "HTML", "CSS", "Apache"],
-    imagen: "/images/projects/fitness.png",
+    imagen: "/images/projects/fitness.webp",
     badge: "Proyecto de Grado (TFG)",
     badgeTipo: "personal",
     duracion: "3 meses",
