@@ -17,10 +17,13 @@ export async function generateMetadata({
 
   return {
     title: `${proyecto.titulo} — Adrián Pérez Navarro`,
-    description: proyecto.descripcionCorta,
+    description: `${proyecto.descripcionCorta} — Desarrollador web en Madrid.`,
+    alternates: {
+      canonical: `https://aperez24.dev/proyectos/${proyecto.slug}`,
+    },
     openGraph: {
       title: `${proyecto.titulo} — Adrián Pérez Navarro`,
-      description: proyecto.descripcionCorta,
+      description: `${proyecto.descripcionCorta} — Desarrollador web en Madrid.`,
       url: `https://aperez24.dev/proyectos/${proyecto.slug}`,
       images: [
         {
@@ -35,7 +38,7 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: `${proyecto.titulo} — Adrián Pérez Navarro`,
-      description: proyecto.descripcionCorta,
+      description: `${proyecto.descripcionCorta} — Desarrollador web en Madrid.`,
       images: [proyecto.imagen],
     },
   };
@@ -51,5 +54,5 @@ export default async function ProyectoDetalle({
 
   if (!proyecto) notFound();
 
-  return <ProyectoDetalleUI proyecto={proyecto} otrosProyectos={proyectos.filter(p => p.slug !== slug)} />;
+  return <ProyectoDetalleUI proyecto={proyecto} />;
 }

@@ -142,7 +142,7 @@ export default function Proyectos() {
                     : "var(--border)";
                 }}
               >
-                {/* Image — next/image con fill */}
+                {/* Image */}
                 <div
                   style={{
                     height: "11rem",
@@ -156,6 +156,8 @@ export default function Proyectos() {
                     src={proyecto.imagen}
                     alt={proyecto.titulo}
                     fill
+                    placeholder="blur"
+                    blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
                     style={{
                       objectFit: "cover",
                       opacity: 0.65,

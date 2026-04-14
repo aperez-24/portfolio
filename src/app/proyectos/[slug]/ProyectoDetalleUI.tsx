@@ -20,8 +20,18 @@ const fadeUp: Variants = {
   }),
 };
 
-export default function ProyectoDetalleUI({ proyecto, otrosProyectos }: { proyecto: Proyecto; otrosProyectos: Proyecto[] }) {
+export default function ProyectoDetalleUI({ proyecto }: { proyecto: Proyecto }) {
   const esFeatured = proyecto.badgeTipo === "featured";
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: "https://aperez24.dev" },
+      { "@type": "ListItem", position: 2, name: "Proyectos", item: "https://aperez24.dev/#projects" },
+      { "@type": "ListItem", position: 3, name: proyecto.titulo, item: `https://aperez24.dev/proyectos/${proyecto.slug}` },
+    ],
+  };
 
   return (
     <main
@@ -30,13 +40,19 @@ export default function ProyectoDetalleUI({ proyecto, otrosProyectos }: { proyec
         minHeight: "100vh",
         color: "var(--text-primary)",
         fontFamily: "'Inter', sans-serif",
-        paddingTop: "72px", // Compensa el Navbar fixed
+        paddingTop: "72px",
       }}
     >
-      {/* ── Navbar global (fixed, flota sobre el contenido) ── */}
+      {/* Breadcrumb JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
+      {/* ── Navbar global ── */}
       <Navbar />
 
-      {/* ── Barra secundaria con "Volver" — flujo normal, pegada al Navbar ── */}
+      {/* ── Barra secundaria con "Volver" ── */}
       <div
         style={{
           background: "rgba(14, 14, 19, 0.95)",
@@ -288,6 +304,8 @@ export default function ProyectoDetalleUI({ proyecto, otrosProyectos }: { proyec
               src={proyecto.imagen}
               alt={proyecto.titulo}
               fill
+              placeholder="blur"
+              blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
               style={{ objectFit: "cover", opacity: 0.85 }}
               sizes="(max-width: 768px) 100vw, 900px"
               priority
