@@ -19,7 +19,7 @@ export default function Contacto() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  async function handleSubmit(e: React.MouseEvent<HTMLButtonElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!form.nombre || !form.email || !form.mensaje) return;
 
@@ -234,7 +234,8 @@ export default function Contacto() {
         </div>
 
         {/* ── Right column: form ── */}
-        <div
+        <form
+          onSubmit={handleSubmit}
           style={{
             background: "var(--bg-secondary)",
             padding: "2.5rem",
@@ -264,13 +265,15 @@ export default function Contacto() {
             }}
           >
             <div>
-              <label style={labelBase}>Nombre</label>
+              <label htmlFor="nombre" style={labelBase}>Nombre</label>
               <input
+                id="nombre"
                 name="nombre"
                 type="text"
                 placeholder="Tu nombre"
                 value={form.nombre}
                 onChange={handleChange}
+                required
                 style={inputBase}
                 onFocus={(e) =>
                   ((e.target as HTMLInputElement).style.borderBottomColor = "var(--accent)")
@@ -281,13 +284,15 @@ export default function Contacto() {
               />
             </div>
             <div>
-              <label style={labelBase}>Email</label>
+              <label htmlFor="email" style={labelBase}>Email</label>
               <input
+                id="email"
                 name="email"
                 type="email"
                 placeholder="tu@email.com"
                 value={form.email}
                 onChange={handleChange}
+                required
                 style={inputBase}
                 onFocus={(e) =>
                   ((e.target as HTMLInputElement).style.borderBottomColor = "var(--accent)")
@@ -300,8 +305,9 @@ export default function Contacto() {
           </div>
 
           <div style={{ marginBottom: "2rem" }}>
-            <label style={labelBase}>Asunto</label>
+            <label htmlFor="asunto" style={labelBase}>Asunto</label>
             <input
+              id="asunto"
               name="asunto"
               type="text"
               placeholder="Consulta sobre proyecto..."
@@ -318,13 +324,15 @@ export default function Contacto() {
           </div>
 
           <div style={{ marginBottom: "2rem" }}>
-            <label style={labelBase}>Mensaje</label>
+            <label htmlFor="mensaje" style={labelBase}>Mensaje</label>
             <textarea
+              id="mensaje"
               name="mensaje"
               placeholder="Cuéntame tu proyecto o consulta..."
               rows={5}
               value={form.mensaje}
               onChange={handleChange}
+              required
               style={{ ...inputBase, resize: "none" }}
               onFocus={(e) =>
                 ((e.target as HTMLTextAreaElement).style.borderBottomColor = "var(--accent)")
@@ -336,7 +344,7 @@ export default function Contacto() {
           </div>
 
           <button
-            onClick={handleSubmit}
+            type="submit"
             disabled={formState === "loading"}
             style={{
               width: "100%",
@@ -429,7 +437,7 @@ export default function Contacto() {
               </p>
             </div>
           )}
-        </div>
+        </form>
       </div>
     </section>
   );

@@ -12,7 +12,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
-      const sections = ["about", "projects"];
+      const sections = ["hero", "about", "projects"];
       const current = sections.find((id) => {
         const el = document.getElementById(id);
         if (!el) return false;
@@ -26,6 +26,7 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
+    { id: "hero", label: "Inicio", href: "/#hero" },
     { id: "about", label: "Sobre Mí", href: "/#about" },
     { id: "projects", label: "Proyectos", href: "/#projects" },
   ];
