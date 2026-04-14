@@ -51,5 +51,5 @@ export default async function ProyectoDetalle({
 
   if (!proyecto) notFound();
 
-  return <ProyectoDetalleUI proyecto={proyecto} />;
+  return <ProyectoDetalleUI proyecto={proyecto} otrosProyectos={proyectos.filter(p => p.slug !== slug)} />;
 }

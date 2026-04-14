@@ -112,3 +112,8 @@ body {
 .skip-link:focus {
   top: 0;
 }
+
+img[src*="cdn.jsdelivr.net"] {
+  min-width: 24px;
+  min-height: 24px;
+}

@@ -20,7 +20,7 @@ const fadeUp: Variants = {
   }),
 };
 
-export default function ProyectoDetalleUI({ proyecto }: { proyecto: Proyecto }) {
+export default function ProyectoDetalleUI({ proyecto, otrosProyectos }: { proyecto: Proyecto; otrosProyectos: Proyecto[] }) {
   const esFeatured = proyecto.badgeTipo === "featured";
 
   return (
