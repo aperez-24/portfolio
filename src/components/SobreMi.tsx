@@ -26,7 +26,7 @@ const tecnologias = [
 const stats = [
   { valor: "3", label: "proyectos reales" },
   { valor: "1", label: "cliente público" },
-  { valor: "2", label: "clientes privados" },
+  { valor: "1", label: "clientes privados" },
 ];
 
 const fadeUp: Variants = {
