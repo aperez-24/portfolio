@@ -115,7 +115,7 @@ export default function Hero() {
               color: "var(--text-muted)",
             }}
           >
-            Available for work
+            Disponible para trabajar
           </span>
         </motion.div>
 
@@ -161,7 +161,7 @@ export default function Hero() {
               color: "var(--text-muted)",
             }}
           >
-            Full Stack Web Developer
+            Desarrollador Web Full Stack
           </p>
           <span style={{ height: "1px", width: "2.5rem", background: "var(--border)" }} />
         </motion.div>

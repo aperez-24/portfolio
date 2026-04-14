@@ -76,7 +76,7 @@ export default function SobreMi() {
               marginBottom: "1rem",
             }}
           >
-            01 // Identity
+            01 // Sobre Mí
           </p>
 
           <h2
@@ -227,6 +227,8 @@ export default function SobreMi() {
                   alt={tech.nombre}
                   width={24}
                   height={24}
+                  loading="lazy"
+                  decoding="async"
                   style={{
                     opacity: 0.8,
                     filter:

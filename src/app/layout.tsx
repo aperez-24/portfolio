@@ -13,13 +13,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Adrián Pérez Navarro | Full Stack Web Developer",
+  title: "Adrián Pérez Navarro | Desarrollador Web Full Stack Madrid",
   description:
-    "Desarrollador web full stack con proyectos reales, incluyendo una plataforma para el Ayuntamiento de Rivas-Vaciamadrid.",
+    "Desarrollador web full stack junior en Madrid. 3 proyectos reales entregados, incluyendo una plataforma para el Ayuntamiento de Rivas-Vaciamadrid. Disponible para empleo y freelance.",
   openGraph: {
-    title: "Adrián Pérez Navarro | Full Stack Web Developer",
+    title: "Adrián Pérez Navarro | Desarrollador Web Full Stack Madrid",
     description:
-      "Desarrollador web full stack con proyectos reales, incluyendo una plataforma para el Ayuntamiento de Rivas-Vaciamadrid.",
+      "Desarrollador web full stack junior en Madrid. 3 proyectos reales entregados, incluyendo una plataforma para el Ayuntamiento de Rivas-Vaciamadrid.",
     url: "https://aperez24.dev",
     siteName: "Adrián Pérez Navarro — Portfolio",
     images: [
@@ -35,9 +35,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Adrián Pérez Navarro | Full Stack Web Developer",
+    title: "Adrián Pérez Navarro | Desarrollador Web Full Stack Madrid",
     description:
-      "Desarrollador web full stack con proyectos reales, incluyendo una plataforma para el Ayuntamiento de Rivas-Vaciamadrid.",
+      "Desarrollador web full stack junior en Madrid. 3 proyectos reales entregados, incluyendo una plataforma para el Ayuntamiento de Rivas-Vaciamadrid.",
     images: ["/og-image.png"],
   },
   icons: {
@@ -51,6 +51,30 @@ export const metadata: Metadata = {
     ],
   },
   manifest: "/favicons/site.webmanifest",
+  alternates: {
+    canonical: "https://aperez24.dev",
+  },
+};
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Adrián Pérez Navarro",
+  jobTitle: "Desarrollador Web Full Stack",
+  url: "https://aperez24.dev",
+  sameAs: [
+    "https://github.com/aperez-24",
+    "https://www.linkedin.com/in/adrián-pérez-navarro/",
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Madrid",
+    addressCountry: "ES",
+  },
+  knowsAbout: [
+    "Next.js", "React", "TypeScript", "PHP", "MySQL",
+    "Tailwind CSS", "JavaScript", "HTML5", "CSS3",
+  ],
 };
 
 export default function RootLayout({
@@ -62,6 +86,10 @@ export default function RootLayout({
     <html lang="es">
       <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}>
         {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
       </body>
     </html>
   );

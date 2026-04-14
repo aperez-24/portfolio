@@ -66,7 +66,7 @@ export default function Proyectos() {
               marginBottom: "0.75rem",
             }}
           >
-            02 // Portafolio
+            02 // Proyectos
           </p>
           <h2
             style={{

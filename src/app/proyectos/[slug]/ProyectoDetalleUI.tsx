@@ -133,7 +133,7 @@ export default function ProyectoDetalleUI({ proyecto }: { proyecto: Proyecto }) 
                     letterSpacing: "0.05em",
                   }}
                 >
-                  Featured Client
+                  Cliente Destacado
                 </span>
               </div>
             ) : (
