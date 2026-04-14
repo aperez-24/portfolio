@@ -41,7 +41,6 @@ export const proyectos: Proyecto[] = [
     imagen: "/images/projects/fitness.webp",
     badge: "Proyecto de Grado (TFG)",
     badgeTipo: "personal",
-    linkRepo: "https://github.com/aperez-24/fitness-app",
     duracion: "3 meses",
     rol: "Desarrollador full stack — Trabajo de Fin de Grado",
     caracteristicas: [

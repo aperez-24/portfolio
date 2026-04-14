@@ -26,8 +26,8 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { id: "about", label: "Sobre Mí" },
-    { id: "projects", label: "Proyectos" },
+    { id: "about", label: "Sobre Mí", href: "/#about" },
+    { id: "projects", label: "Proyectos", href: "/#projects" },
   ];
 
   return (
@@ -100,10 +100,10 @@ export default function Navbar() {
           className="hidden md:flex"
           style={{ alignItems: "center", gap: "0.25rem" }}
         >
-          {navLinks.map(({ id, label }) => (
+          {navLinks.map(({ id, label, href }) => (
             <a
               key={id}
-              href={`#${id}`}
+              href={href}
               style={{
                 padding: "0.5rem 1rem",
                 fontFamily: "'JetBrains Mono', monospace",
