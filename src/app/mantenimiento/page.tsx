@@ -198,7 +198,7 @@ export default function Mantenimiento() {
                 <span
                   style={{
                     fontFamily: "'JetBrains Mono', monospace",
-                    fontSize: "0.55rem",
+                    fontSize: "0.65rem",
                     textTransform: "uppercase",
                     letterSpacing: "0.12em",
                     color: "var(--accent)",
