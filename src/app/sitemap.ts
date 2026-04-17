@@ -19,5 +19,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     ...proyectosUrls,
+    {
+      url: `${baseUrl}/aviso-legal`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.2,
+    },
+    {
+      url: `${baseUrl}/privacidad`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.2,
+    },
   ];
 }

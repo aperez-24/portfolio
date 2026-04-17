@@ -1,10 +1,9 @@
 "use client";
 
 export default function Footer() {
-  const navLinks = [
-    { label: "About", href: "#about" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "#contact" },
+  const legalLinks = [
+    { label: "Aviso Legal", href: "/aviso-legal" },
+    { label: "Privacidad", href: "/privacidad" },
   ];
 
   const socialLinks = [
@@ -75,9 +74,9 @@ export default function Footer() {
           </span>
         </div>
 
-        {/* Nav links */}
+        {/* Legal links */}
         <div style={{ display: "flex", gap: "2rem" }}>
-          {navLinks.map((link) => (
+          {legalLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}

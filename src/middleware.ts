@@ -11,6 +11,8 @@ export function middleware(request: NextRequest) {
   if (
     isMaintenanceMode && 
     !pathname.startsWith("/mantenimiento") && 
+    !pathname.startsWith("/privacidad") &&
+    !pathname.startsWith("/aviso-legal") &&
     !pathname.includes(".") // Evita bloquear imágenes o iconos necesarios para la página
   ) {
     return NextResponse.rewrite(new URL("/mantenimiento", request.url));

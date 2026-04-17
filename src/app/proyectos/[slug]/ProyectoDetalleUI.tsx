@@ -6,6 +6,7 @@ import { motion, Variants } from "framer-motion";
 import { proyectos } from "@/data/proyectos";
 import { Proyecto } from "@/types/proyecto";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -594,6 +595,8 @@ export default function ProyectoDetalleUI({ proyecto }: { proyecto: Proyecto }) 
           </div>
         </div>
       </section>
+      {/* ── Footer global ── */}
+      <Footer />
     </main>
   );
 }

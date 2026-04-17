@@ -131,7 +131,7 @@ export default function Navbar() {
           ))}
 
           <a
-            href="#contact"
+            href="/#contact"
             style={{
               marginLeft: "1.25rem",
               padding: "0.65rem 1.5rem",
