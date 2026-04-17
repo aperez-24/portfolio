@@ -4,7 +4,9 @@ export default function Mantenimiento() {
   return (
     <main
       style={{
-        minHeight: "100vh",
+        minHeight: "100dvh",
+        height: "100dvh",
+        overflowY: "hidden",
         background: "var(--bg-primary)",
         display: "flex",
         flexDirection: "column",
@@ -147,7 +149,7 @@ export default function Mantenimiento() {
         >
           Estoy ultimando los detalles del portafolio.
           <br />
-          Vuelve pronto — estará listo en breve.
+          Vuelve pronto - estará listo en breve.
         </p>
 
         {/* Info card */}
@@ -171,10 +173,16 @@ export default function Mantenimiento() {
               marginBottom: "1.25rem",
             }}
           >
-            — mientras tanto
+            - mientras tanto
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             {[
+              {
+                label: "CV",
+                value: "Descargar CV (PDF)",
+                href: "/CV-Adrián_Pérez_Navarro.pdf",
+                target: "_blank",
+              },
               {
                 label: "Email",
                 value: "contacto@aperez24.dev",
@@ -209,7 +217,7 @@ export default function Mantenimiento() {
                 </span>
                 <a
                   href={href}
-                  target={href.startsWith("http") || href.startsWith("mailto") ? "_blank" : undefined}
+                  target={href.startsWith("http") || href.startsWith("mailto") || href.endsWith(".pdf") ? "_blank" : undefined}
                   rel="noopener noreferrer"
                   style={{
                     fontSize: "0.85rem",
@@ -242,7 +250,7 @@ export default function Mantenimiento() {
             opacity: 0.6,
           }}
         >
-          © {new Date().getFullYear()} Adrián Pérez Navarro — Madrid, España
+          © {new Date().getFullYear()} Adrián Pérez Navarro - Madrid, España
         </p>
       </div>
 

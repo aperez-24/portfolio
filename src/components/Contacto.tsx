@@ -383,6 +383,19 @@ export default function Contacto() {
           >
             {formState === "loading" ? "Enviando..." : "Enviar mensaje →"}
           </button>
+          <p style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: "0.58rem",
+            color: "var(--text-muted)",
+            letterSpacing: "0.05em",
+            marginTop: "1rem",
+            lineHeight: 1.6,
+          }}>
+            Al enviar aceptas el tratamiento de tus datos según nuestra{" "}
+            <a href="/privacidad" style={{ color: "var(--accent-hover)", textDecoration: "none" }}>
+              Política de Privacidad
+            </a>.
+          </p>
 
           {formState === "success" && (
             <div

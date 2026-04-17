@@ -116,7 +116,7 @@ export default function SobreMi() {
           </div>
 
           <a
-            href="/cv-adrian-perez.pdf"
+            href="/CV-Adrián_Pérez_Navarro.pdf"
             download
             style={{
               display: "inline-flex",
