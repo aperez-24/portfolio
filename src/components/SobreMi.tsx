@@ -97,16 +97,16 @@ export default function SobreMi() {
             <p style={{ color: "var(--text-muted)", lineHeight: 1.7, fontSize: "1rem" }}>
               Soy Adrián Pérez Navarro, Técnico Superior en Desarrollo de
               Aplicaciones Web recién licenciado y con sede en Madrid. Desde el
-              primer día del ciclo me centré en construir proyectos funcionales,
+              primer día del ciclo me centré en aprender como construir proyectos funcionales,
               no solo ejercicios.
             </p>
             <p style={{ color: "var(--text-muted)", lineHeight: 1.7, fontSize: "1rem" }}>
-              Uno de esos proyectos fue un encargo real para el{" "}
+              Así es como conseguí un encargo real para el{" "}
               <span style={{ color: "var(--text-primary)", fontWeight: 500 }}>
                 Ayuntamiento de Rivas-Vaciamadrid
               </span>
               : una plataforma web para gestionar deportes infantiles
-              municipales, hoy en uso real.
+              municipales y fomentar los valores deportivos en los más pequeños, hoy en uso real.
             </p>
             <p style={{ color: "var(--text-muted)", lineHeight: 1.7, fontSize: "1rem" }}>
               Busco mi primer empleo como desarrollador web donde pueda seguir

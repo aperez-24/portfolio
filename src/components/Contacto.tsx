@@ -150,8 +150,8 @@ export default function Contacto() {
               {
                 icon: "✉",
                 label: "Email",
-                value: "apereznavarro24@gmail.com",
-                href: "mailto:apereznavarro24@gmail.com",
+                value: "contacto@aperez24.dev",
+                href: "mailto:contacto@aperez24.dev",
               },
               {
                 icon: "📍",
