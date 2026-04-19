@@ -79,7 +79,7 @@ export default function Proyectos() {
             }}
           >
             Trabajos{" "}
-            <span className="text-gradient">Seleccionados</span>.
+            <span className="text-gradient">seleccionados</span>.
           </h2>
           <p
             style={{

@@ -89,8 +89,8 @@ export default function SobreMi() {
               marginBottom: "1.5rem",
             }}
           >
-            Junior con proyectos{" "}
-            <span className="text-gradient">reales</span>.
+            Junior con {" "}
+            <span className="text-gradient">proyectos reales</span>.
           </h2>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
