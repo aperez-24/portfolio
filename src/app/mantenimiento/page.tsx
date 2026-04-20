@@ -181,7 +181,8 @@ export default function Mantenimiento() {
                 label: "CV",
                 value: "Descargar CV (PDF)",
                 href: "/CV-Adrián_Pérez_Navarro.pdf",
-                target: "_blank",
+                download: "CV_Adrian_Perez.pdf",
+                target: "_self",
               },
               {
                 label: "Email",
@@ -201,7 +202,7 @@ export default function Mantenimiento() {
                 href: "https://www.linkedin.com/in/adrián-pérez-navarro/",
                 target: "_blank",
               },
-            ].map(({ label, value, href }) => (
+            ].map(({ label, value, href, download, target }) => (
               <div key={label} style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
                 <span
                   style={{
@@ -217,8 +218,9 @@ export default function Mantenimiento() {
                 </span>
                 <a
                   href={href}
-                  target={href.startsWith("http") || href.startsWith("mailto") || href.endsWith(".pdf") ? "_blank" : undefined}
-                  rel="noopener noreferrer"
+                  download={download}
+                  target={target}
+                  rel={target === "_blank" ? "noopener noreferrer" : undefined}
                   style={{
                     fontSize: "0.85rem",
                     color: "var(--text-secondary)",
