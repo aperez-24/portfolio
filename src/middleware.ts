@@ -1,26 +1,27 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+// Modo mantenimiento: mientras esté en true, cualquier ruta de la web (páginas, API,
+// imágenes, PDF, robots.txt…) muestra solo public/mantenimiento.html.
+// Para volver a publicar el portfolio, cámbialo a false y haz push.
+const MAINTENANCE = true;
+const PAGE = "/mantenimiento.html";
+
 export function middleware(request: NextRequest) {
-  // Leemos la variable de entorno
-  const isMaintenanceMode = process.env.NEXT_PUBLIC_MAINTENANCE_MODE === "true";
-  const { pathname } = request.nextUrl;
+  if (!MAINTENANCE) return NextResponse.next();
 
-  // Si el modo mantenimiento está ON y el usuario NO está ya en la página de mantenimiento
-  // ni está pidiendo un archivo estático (imágenes, css)
-  if (
-    isMaintenanceMode && 
-    !pathname.startsWith("/mantenimiento") && 
-    !pathname.startsWith("/privacidad") &&
-    !pathname.startsWith("/aviso-legal") &&
-    !pathname.includes(".") // Evita bloquear imágenes o iconos necesarios para la página
-  ) {
-    return NextResponse.rewrite(new URL("/mantenimiento", request.url));
-  }
-
-  return NextResponse.next();
+  // 503 + Retry-After: los buscadores entienden que es temporal y no desindexan la web
+  const res =
+    request.nextUrl.pathname === PAGE
+      ? NextResponse.next({ status: 503 })
+      : NextResponse.rewrite(new URL(PAGE, request.url), { status: 503 });
+  res.headers.set("Retry-After", "86400");
+  res.headers.set("X-Robots-Tag", "noindex");
+  res.headers.set("Cache-Control", "no-store");
+  return res;
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  // Todas las rutas, incluidos /api y los estáticos de Next
+  matcher: ["/:path*"],
 };

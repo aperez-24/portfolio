@@ -61,7 +61,7 @@ src/
 │   └── proyectos.ts                  # ← FICHERO CLAVE: array de proyectos
 ├── types/
 │   └── proyecto.ts                   # Interfaz TypeScript Proyecto
-└── middleware.ts                     # Modo mantenimiento
+└── middleware.ts                     # Modo mantenimiento (MAINTENANCE = true/false)
 public/
 ├── images/
 │   ├── projects/                     # Imágenes de proyectos (.webp)
@@ -113,8 +113,6 @@ RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxx
 # Email donde recibirás los mensajes del formulario de contacto
 CONTACT_EMAIL=tu@email.com
 
-# Modo mantenimiento — pon "true" para activarlo, "false" para desactivarlo
-NEXT_PUBLIC_MAINTENANCE_MODE=false
 ```
 
 > ⚠️ El fichero `.env.local` está en `.gitignore`. Nunca subas claves API al repositorio.
@@ -185,7 +183,7 @@ Cualquier `git push` a `main` dispara un nuevo deploy automáticamente.
 - **Formulario de contacto** con validación cliente/servidor, rate limiting y envío real via Resend
 - **Páginas de detalle** por proyecto generadas estáticamente en build (SSG)
 - **SEO técnico**: meta tags, Open Graph, Twitter Card, Schema.org (Person), sitemap dinámico, robots.txt
-- **Modo mantenimiento** activable con variable de entorno sin tocar código
+- **Modo mantenimiento**: con `MAINTENANCE = true` en `src/middleware.ts`, toda la web (páginas, API y archivos) sirve solo `public/mantenimiento.html` con estado 503
 - **Cumplimiento RGPD**: Aviso Legal y Política de Privacidad, gestión de datos de contacto
 - **Responsive** completo: móvil, tablet y escritorio
 - **Animaciones** de entrada con Framer Motion
